@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTU MPI 3160712 – Repeated Questions Analysis</title>
+  <meta name="description" content="Deep analysis of repeated questions across all GTU Microprocessor & Interfacing (3160712) exam papers from 2021 to 2025 with answers and topic categorization." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0b0f;
+      --surface: #111318;
+      --surface2: #1a1d26;
+      --surface3: #21253a;
+      --border: #2a2e45;
+      --border2: #363b56;
+      --accent: #6c63ff;
+      --accent2: #a78bfa;
+      --accent3: #38bdf8;
+      --gold: #fbbf24;
+      --green: #34d399;
+      --pink: #f472b6;
+      --red: #f87171;
+      --orange: #fb923c;
+      --text: #e8eaf6;
+      --text2: #9ba3c7;
+      --text3: #6b7294;
+      --glow: rgba(108, 99, 255, 0.15);
+      --glow2: rgba(167, 139, 250, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ─── Background orbs ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ─── Hero Header ─── */
+    header {
+      position: relative; z-index: 1;
+      background: linear-gradient(135deg, #0d0f1a 0%, #12162a 50%, #0d0f1a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px 50px;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(108,99,255,0.03) 60px,
+        rgba(108,99,255,0.03) 61px
+      );
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 12px; font-weight: 600;
+      color: var(--accent2);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 20px;
+      position: relative; z-index: 1;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--green); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    header h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, var(--accent2) 50%, var(--accent3) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15; margin-bottom: 14px;
+      position: relative; z-index: 1;
+    }
+    header p {
+      font-size: 15px; color: var(--text2);
+      max-width: 600px; margin: 0 auto 30px;
+      position: relative; z-index: 1;
+    }
+    .stats-bar {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+      position: relative; z-index: 1;
+    }
+    .stat-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 13px; font-weight: 600;
+    }
+    .stat-chip span { color: var(--accent2); font-size: 20px; display: block; }
+
+    /* ─── Nav Tabs ─── */
+    .nav-wrapper {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,11,15,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+    }
+    .nav-tabs {
+      display: flex; overflow-x: auto;
+      gap: 2px; max-width: 1200px; margin: 0 auto;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0;
+      background: none; border: none;
+      color: var(--text3);
+      padding: 14px 18px;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .tab-btn:hover { color: var(--text2); }
+    .tab-btn.active {
+      color: var(--accent2);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ─── Main Container ─── */
+    main {
+      max-width: 1200px; margin: 0 auto;
+      padding: 32px 16px 80px;
+      position: relative; z-index: 1;
+    }
+
+    /* ─── Section ─── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ─── Repetition Cards ─── */
+    .rep-group {
+      margin-bottom: 40px;
+    }
+    .rep-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 18px;
+    }
+    .rep-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 12px;
+      font-size: 18px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .rep-1 .rep-badge { background: rgba(107,114,128,0.2); color: #9ca3af; border: 1px solid #4b5563; }
+    .rep-2 .rep-badge { background: rgba(56,189,248,0.15); color: var(--accent3); border: 1px solid rgba(56,189,248,0.3); }
+    .rep-3 .rep-badge { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
+    .rep-4 .rep-badge { background: rgba(251,191,36,0.15); color: var(--gold); border: 1px solid rgba(251,191,36,0.3); }
+    .rep-5plus .rep-badge { background: rgba(248,113,113,0.15); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+    .rep-title { font-size: 20px; font-weight: 800; }
+    .rep-subtitle { font-size: 12px; color: var(--text3); font-weight: 500; margin-top: 2px; }
+    .rep-count-pill {
+      margin-left: auto;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 4px 12px;
+      font-size: 12px; font-weight: 600; color: var(--text2);
+    }
+
+    .q-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .q-card:hover {
+      border-color: var(--border2);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+    .q-card-header {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .q-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0; margin-top: 2px;
+    }
+    .q-text { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.5; }
+    .q-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .q-tag {
+      font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 4px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .tag-year { background: rgba(108,99,255,0.15); color: var(--accent2); }
+    .tag-marks { background: rgba(251,191,36,0.1); color: var(--gold); }
+    .tag-topic { background: rgba(52,211,153,0.1); color: var(--green); }
+    .toggle-btn {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text3); border-radius: 6px;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; cursor: pointer; flex-shrink: 0; margin-top: 3px;
+      transition: all 0.2s;
+    }
+    .q-card.open .toggle-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .q-details {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .q-card.open .q-details { max-height: 2000px; }
+    .q-details-inner {
+      border-top: 1px solid var(--border);
+      padding: 18px 20px;
+    }
+    .occurrences-title {
+      font-size: 11px; font-weight: 700; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .occ-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .occ-item {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 14px;
+      font-size: 13px;
+    }
+    .occ-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .occ-year { font-weight: 700; color: var(--text); min-width: 60px; }
+    .occ-session { color: var(--text2); flex: 1; }
+    .occ-marks { font-weight: 700; color: var(--gold); }
+
+    .answer-section { margin-top: 14px; }
+    .answer-header {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; color: var(--accent2);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .answer-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 16px;
+      font-size: 13px; color: var(--text2); line-height: 1.7;
+    }
+    .answer-box strong { color: var(--text); font-weight: 600; }
+    .answer-box code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.2);
+      border-radius: 4px; padding: 1px 6px;
+      font-size: 12px; color: var(--accent2);
+    }
+    .answer-box pre {
+      font-family: 'JetBrains Mono', monospace;
+      background: #0d0f1a;
+      border: 1px solid var(--border2);
+      border-radius: 8px; padding: 14px 16px;
+      font-size: 12px; color: #c5ccf0;
+      overflow-x: auto; margin-top: 10px;
+      line-height: 1.6;
+    }
+    .answer-box ul { padding-left: 20px; margin: 8px 0; }
+    .answer-box li { margin-bottom: 4px; }
+
+    /* ─── Important Questions Section ─── */
+    .importance-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px; margin-bottom: 32px;
+    }
+    .imp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px;
+      transition: all 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .imp-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+    }
+    .imp-card.hot::before { background: linear-gradient(90deg, var(--red), var(--orange)); }
+    .imp-card.warm::before { background: linear-gradient(90deg, var(--gold), var(--green)); }
+    .imp-card.cool::before { background: linear-gradient(90deg, var(--accent), var(--accent3)); }
+    .imp-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .imp-card-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .imp-card-q { font-size: 13px; color: var(--text2); line-height: 1.5; margin-bottom: 12px; }
+    .imp-card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .freq-stars { display: flex; gap: 3px; }
+    .star { font-size: 12px; }
+
+    /* ─── Topic Grid ─── */
+    .topic-section { margin-bottom: 40px; }
+    .topic-header {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 18px;
+      margin-bottom: 14px; cursor: pointer;
+    }
+    .topic-icon { font-size: 20px; }
+    .topic-name { font-size: 16px; font-weight: 700; flex: 1; }
+    .topic-count {
+      background: rgba(108,99,255,0.15); color: var(--accent2);
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: 20px; padding: 3px 12px;
+      font-size: 12px; font-weight: 700;
+    }
+
+    /* ─── Different Marks Table ─── */
+    .marks-table-wrap { overflow-x: auto; margin-bottom: 24px; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead { background: var(--surface2); }
+    th {
+      padding: 12px 16px; text-align: left;
+      font-size: 11px; font-weight: 700;
+      color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text2);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(108,99,255,0.04); }
+    .mark-pill {
+      display: inline-block;
+      padding: 2px 10px; border-radius: 20px;
+      font-size: 11px; font-weight: 700;
+    }
+    .mark-3 { background: rgba(56,189,248,0.1); color: var(--accent3); }
+    .mark-4 { background: rgba(251,191,36,0.1); color: var(--gold); }
+    .mark-7 { background: rgba(248,113,113,0.1); color: var(--red); }
+
+    /* ─── Search ─── */
+    .search-wrap {
+      position: relative; margin-bottom: 28px;
+    }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--text3); font-size: 16px;
+    }
+    #searchInput {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px 13px 44px;
+      font-family: inherit; font-size: 14px;
+      color: var(--text);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #searchInput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(108,99,255,0.1);
+    }
+    #searchInput::placeholder { color: var(--text3); }
+
+    /* ─── Section heading ─── */
+    .sec-heading {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .sec-heading h2 {
+      font-size: 24px; font-weight: 800;
+    }
+    .sec-heading-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center; padding: 30px;
+      font-size: 12px; color: var(--text3);
+      border-top: 1px solid var(--border);
+      position: relative; z-index: 1;
+    }
+    footer strong { color: var(--text2); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 640px) {
+      header { padding: 40px 16px 32px; }
+      .importance-grid { grid-template-columns: 1fr; }
+      .occ-session { display: none; }
+    }
+
+    /* ─── Animations ─── */
+    .fade-in {
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header>
+  <div class="hero-badge">📄 GTU Exam Analysis • Subject Code: 3160712</div>
+  <h1>Microprocessor &amp; Interfacing<br/>Repeated Questions Analysis</h1>
+  <p>Deep analysis of all 9 exam papers (Summer/Winter 2021–2025) with repeated question tracking, answers &amp; topic categorization.</p>
+  <div class="stats-bar">
+    <div class="stat-chip"><span>9</span>Exam Papers</div>
+    <div class="stat-chip"><span>225</span>Total Questions</div>
+    <div class="stat-chip"><span>48</span>Unique Topics</div>
+    <div class="stat-chip"><span>7×</span>Max Repetition</div>
+  </div>
+</header>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<div class="nav-wrapper">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('repetition')" id="tab-repetition">🔁 Repetition List</button>
+    <button class="tab-btn" onclick="showTab('important')" id="tab-important">⭐ Most Important Q&amp;A</button>
+    <button class="tab-btn" onclick="showTab('topicwise')" id="tab-topicwise">📂 Topic-wise Q&amp;A</button>
+    <button class="tab-btn" onclick="showTab('marksvar')" id="tab-marksvar">⚖️ Marks Variation</button>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<main>
+
+<!-- ══════ SECTION 1: REPETITION ══════ -->
+<div class="section active fade-in" id="section-repetition">
+
+  <div class="sec-heading">
+    <h2>🔁 Questions by Repetition Count</h2>
+    <div class="sec-heading-line"></div>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search any question…" oninput="filterQuestions()" />
+  </div>
+
+  <div id="rep-container">
+
+  <!-- ═══ 7 TIMES ═══ -->
+  <div class="rep-group rep-5plus" id="grp-7">
+    <div class="rep-header">
+      <div class="rep-badge">7</div>
+      <div>
+        <div class="rep-title" style="color:#f87171;">Questions Asked 7 Times</div>
+        <div class="rep-subtitle">🔥 Highest Priority – Appears in Almost Every Exam</div>
+      </div>
+      <div class="rep-count-pill">1 question</div>
+    </div>
+
+    <!-- Q7-1 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(248,113,113,0.15);color:var(--red);">🏆</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and explain the block diagram / internal architecture of 8085 Microprocessor.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">8085 Architecture</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(248,113,113,0.1);color:var(--red);">7× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#f87171;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#f87171;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#f87171;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#f87171;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.2(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#f87171;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#f87171;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#f87171;"></div><span class="occ-year">W2025</span><span class="occ-session">Winter 2025 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Internal Architecture of 8085 Microprocessor:</strong><br/><br/>
+              The 8085 is an 8-bit microprocessor with a 16-bit address bus and 8-bit data bus. Its internal architecture consists of the following blocks:<br/><br/>
+              <strong>1. Arithmetic & Logic Unit (ALU):</strong> Performs arithmetic (ADD, SUB, INC, DEC) and logical (AND, OR, XOR, CMP) operations on 8-bit data. It interacts with the accumulator and flag register.<br/><br/>
+              <strong>2. Accumulator (A):</strong> An 8-bit register that is the primary working register. ALU operations use accumulator as one of the operands and result is stored here.<br/><br/>
+              <strong>3. General Purpose Registers (B, C, D, E, H, L):</strong> Six 8-bit registers. They can be used in pairs (BC, DE, HL) as 16-bit registers for memory addressing.<br/><br/>
+              <strong>4. Flag Register:</strong> Contains 5 flags – <code>S</code> (Sign), <code>Z</code> (Zero), <code>AC</code> (Auxiliary Carry), <code>P</code> (Parity), <code>CY</code> (Carry).<br/><br/>
+              <strong>5. Program Counter (PC):</strong> 16-bit register. Holds the address of the next instruction to be fetched.<br/><br/>
+              <strong>6. Stack Pointer (SP):</strong> 16-bit register. Points to the top of the stack in memory.<br/><br/>
+              <strong>7. Instruction Register & Decoder:</strong> Holds the fetched opcode and decodes it to generate control signals.<br/><br/>
+              <strong>8. Timing & Control Unit:</strong> Generates control signals (ALE, RD̄, WR̄, IO/M̄, S0, S1) for synchronizing operations.<br/><br/>
+              <strong>9. Interrupt Control:</strong> Handles 5 hardware interrupts (TRAP, RST7.5, RST6.5, RST5.5, INTR).<br/><br/>
+              <strong>10. Serial I/O Control:</strong> Contains SID (Serial Input Data) and SOD (Serial Output Data) lines for serial communication.<br/><br/>
+              <strong>11. Bus Interface:</strong> The multiplexed AD0–AD7 bus carries both address (lower 8 bits) and data. ALE signal is used to demultiplex. A8–A15 are the upper address lines.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 5 TIMES ═══ -->
+  <div class="rep-group rep-5plus" id="grp-5">
+    <div class="rep-header">
+      <div class="rep-badge">5</div>
+      <div>
+        <div class="rep-title" style="color:#fb923c;">Questions Asked 5 Times</div>
+        <div class="rep-subtitle">🔥 Very High Priority</div>
+      </div>
+      <div class="rep-count-pill">3 questions</div>
+    </div>
+
+    <!-- Q5-1 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">⚡</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and explain internal block diagram of 8255A (Programmable Peripheral Interface).</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">8255A PPI</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(251,146,36,0.1);color:var(--orange);">5× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.5(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.4(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.5(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.5(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2025</span><span class="occ-session">Winter 2025 – Q.4(a) mention</span><span class="occ-marks">3 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>8255A – Programmable Peripheral Interface (PPI):</strong><br/><br/>
+              8255A is a general purpose programmable I/O device designed to transfer data between the microprocessor and peripheral devices.<br/><br/>
+              <strong>Block Diagram Components:</strong><br/><br/>
+              <strong>1. Data Bus Buffer:</strong> 8-bit bidirectional, 3-state buffer that interfaces the 8255A with the system data bus. All data, control words, and status information pass through this buffer.<br/><br/>
+              <strong>2. Read/Write Control Logic:</strong> Controls data flow direction (read or write). Inputs: CS̄, RD̄, WR̄, A0, A1, RESET.<br/><br/>
+              <strong>3. Group A and Group B Control:</strong><br/>
+              &nbsp;&nbsp;• Group A: Controls Port A (PA0–PA7) and upper nibble of Port C (PC4–PC7)<br/>
+              &nbsp;&nbsp;• Group B: Controls Port B (PB0–PB7) and lower nibble of Port C (PC0–PC3)<br/><br/>
+              <strong>4. Port A (8 bits):</strong> Can be configured as input or output. Supports Mode 0, 1, 2.<br/><br/>
+              <strong>5. Port B (8 bits):</strong> Can be configured as input or output. Supports Mode 0, 1 only.<br/><br/>
+              <strong>6. Port C (8 bits):</strong> Can be used as I/O or as handshake/control signals for Port A and Port B.<br/><br/>
+              <strong>Modes of Operation:</strong><br/>
+              <ul>
+                <li><strong>Mode 0 (Basic I/O):</strong> Simple I/O without handshaking. Ports A, B, C as input/output.</li>
+                <li><strong>Mode 1 (Strobed I/O):</strong> Handshaking mode. Port C provides handshake signals.</li>
+                <li><strong>Mode 2 (Bidirectional Bus):</strong> Only Port A. Bidirectional data transfer with handshaking.</li>
+                <li><strong>BSR Mode:</strong> Bit Set/Reset mode for Port C individual bits.</li>
+              </ul><br/>
+              <strong>Port Selection:</strong><br/>
+              <code>A1 A0 = 00</code> → Port A &nbsp;|&nbsp; <code>01</code> → Port B &nbsp;|&nbsp; <code>10</code> → Port C &nbsp;|&nbsp; <code>11</code> → Control Register
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5-2 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">⚡</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and explain internal block diagram of 8259A (Programmable Interrupt Controller).</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">8259A PIC</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(251,146,36,0.1);color:var(--orange);">5× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.4(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.4(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.4(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.5(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.5(c)</span><span class="occ-marks">7 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>8259A – Programmable Interrupt Controller (PIC):</strong><br/><br/>
+              8259A manages up to 8 interrupt requests simultaneously. Multiple 8259As can be cascaded to handle 64 interrupts.<br/><br/>
+              <strong>Block Diagram Components:</strong><br/><br/>
+              <strong>1. Interrupt Request Register (IRR):</strong> Stores all pending interrupt requests from IR0–IR7.<br/><br/>
+              <strong>2. In-Service Register (ISR):</strong> Records which interrupt is currently being serviced.<br/><br/>
+              <strong>3. Interrupt Mask Register (IMR):</strong> Stores bits for masking (disabling) specific interrupt requests.<br/><br/>
+              <strong>4. Priority Resolver:</strong> Determines highest priority interrupt from IRR while considering ISR and IMR.<br/><br/>
+              <strong>5. Data Bus Buffer:</strong> Bidirectional 8-bit buffer for 8085 communication.<br/><br/>
+              <strong>6. Read/Write Control Logic:</strong> Controls read and write operations.<br/><br/>
+              <strong>7. Cascade Buffer/Comparator:</strong> Used when multiple 8259As are connected in master-slave configuration.<br/><br/>
+              <strong>8. Control Logic:</strong> Generates INT signal to CPU and receives INTA̅ from CPU.<br/><br/>
+              <strong>Operation Flow:</strong><br/>
+              <ul>
+                <li>IR0–IR7 receive interrupt signals → stored in IRR</li>
+                <li>Priority Resolver selects highest priority (considering IMR)</li>
+                <li>INT pin goes HIGH → CPU sends INTA̅</li>
+                <li>IRR bit is reset, ISR bit is set</li>
+                <li>CPU reads vector byte from data bus</li>
+                <li>After service: EOI (End of Interrupt) resets ISR bit</li>
+              </ul><br/>
+              <strong>Initialization:</strong> Requires 2–4 Initialization Command Words (ICW1–ICW4).<br/>
+              <strong>Operation Commands:</strong> 3 Operation Command Words (OCW1–OCW3).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5-3 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">⚡</div>
+        <div style="flex:1">
+          <div class="q-text">Explain various addressing modes of 8085 microprocessor with examples.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Addressing Modes</span>
+            <span class="q-tag tag-marks">3/7 Marks</span>
+            <span class="q-tag" style="background:rgba(251,146,36,0.1);color:var(--orange);">5× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.3(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.2(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.4(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.1(a)</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fb923c;"></div><span class="occ-year">W2025</span><span class="occ-session">Winter 2025 – Q.3(a) OR</span><span class="occ-marks">3 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Addressing Modes of 8085:</strong><br/><br/>
+              An addressing mode specifies how the operand of an instruction is located.<br/><br/>
+              <strong>1. Immediate Addressing Mode:</strong><br/>
+              The data (operand) is part of the instruction itself.<br/>
+              <code>MVI A, 32H</code> → Load 32H directly into register A<br/>
+              <code>LXI H, 2050H</code> → Load 2050H directly into HL pair<br/><br/>
+              <strong>2. Register Addressing Mode:</strong><br/>
+              Operand is in a register.<br/>
+              <code>MOV A, B</code> → Copy content of B into A<br/>
+              <code>ADD C</code> → Add C to A<br/><br/>
+              <strong>3. Register Indirect Addressing Mode:</strong><br/>
+              Address of operand is stored in a register pair.<br/>
+              <code>MOV A, M</code> → Fetch data from memory location pointed by HL<br/>
+              <code>LDAX B</code> → Load A from address in BC pair<br/><br/>
+              <strong>4. Direct Addressing Mode:</strong><br/>
+              The 16-bit address of operand is given in the instruction.<br/>
+              <code>LDA 2050H</code> → Load A from memory address 2050H<br/>
+              <code>STA 3000H</code> → Store A at memory address 3000H<br/><br/>
+              <strong>5. Implicit (Inherent) Addressing Mode:</strong><br/>
+              Operand is implied in the opcode itself; no explicit address.<br/>
+              <code>CMA</code> → Complement A (A is implied)<br/>
+              <code>RAL</code> → Rotate A Left through Carry<br/>
+              <code>NOP</code> → No operation
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 4 TIMES ═══ -->
+  <div class="rep-group rep-4" id="grp-4">
+    <div class="rep-header">
+      <div class="rep-badge">4</div>
+      <div>
+        <div class="rep-title" style="color:var(--gold);">Questions Asked 4 Times</div>
+        <div class="rep-subtitle">⭐ High Priority</div>
+      </div>
+      <div class="rep-count-pill">6 questions</div>
+    </div>
+
+    <!-- Q4-1 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">🎯</div>
+        <div style="flex:1">
+          <div class="q-text">Explain interfacing / memory interface of 4KB EPROM with 8085 microprocessor starting from address 0000H.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Memory Interfacing</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(251,191,36,0.1);color:var(--gold);">4× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.2(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.2(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.2(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.3(b) related</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Interfacing 4KB EPROM (2732) with 8085:</strong><br/><br/>
+              <strong>Given:</strong> 4KB EPROM, starting address = 0000H<br/>
+              <strong>End address:</strong> 0000H + 0FFFH = 0FFFH<br/><br/>
+              <strong>Address Range Analysis:</strong><br/>
+              4KB = 4 × 1024 = 4096 locations → needs 12 address lines (A0–A11)<br/><br/>
+              <strong>Address lines:</strong><br/>
+              <code>A0–A11</code> → connected directly to EPROM address pins (A0–A11)<br/>
+              <code>A12–A15</code> → used for chip select logic<br/><br/>
+              <strong>For starting address 0000H:</strong><br/>
+              Binary: A15=0, A14=0, A13=0, A12=0 → All high address lines are 0<br/>
+              → Use a NAND/NOR gate: <code>CE̅ = A15 + A14 + A13 + A12</code> (NOR gate output)<br/>
+              When A15–A12 = 0000, CE̅ = 0 → chip enabled<br/><br/>
+              <strong>Connections:</strong><br/>
+              <ul>
+                <li>AD0–AD7 (demultiplexed) → D0–D7 of EPROM</li>
+                <li>A0–A11 → A0–A11 of EPROM</li>
+                <li>IO/M̅ and RD̅ → OE̅ of EPROM (AND gate)</li>
+                <li>Chip Enable → derived from A12–A15</li>
+              </ul><br/>
+              <strong>Note:</strong> Use 74LS138 decoder for multiple memory chips.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4-2 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">🎯</div>
+        <div style="flex:1">
+          <div class="q-text">Explain 8085 Programming Model with diagram (registers, flags, etc.).</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Programming Model</span>
+            <span class="q-tag tag-marks">4/7 Marks</span>
+            <span class="q-tag" style="background:rgba(251,191,36,0.1);color:var(--gold);">4× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.3(b)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.4(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.1(b)</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>8085 Programming Model:</strong><br/><br/>
+              The programming model shows all registers that are visible to the programmer:<br/><br/>
+              <strong>General Purpose Registers (8-bit):</strong><br/>
+              <code>B, C</code> → Can form BC pair (16-bit)<br/>
+              <code>D, E</code> → Can form DE pair (16-bit)<br/>
+              <code>H, L</code> → Can form HL pair (16-bit), used as memory pointer<br/><br/>
+              <strong>Special Purpose Registers:</strong><br/>
+              <code>A</code> (Accumulator, 8-bit) → Main working register<br/>
+              <code>F</code> (Flag Register, 8-bit) → S, Z, AC, P, CY flags<br/>
+              <code>PC</code> (Program Counter, 16-bit) → Next instruction address<br/>
+              <code>SP</code> (Stack Pointer, 16-bit) → Top of stack address<br/><br/>
+              <strong>Flag Register Bit Positions:</strong><br/>
+              <pre>D7  D6  D5  D4  D3  D2  D1  D0
+ S   Z   0  AC   0   P   1  CY</pre>
+              <strong>S</strong>=Sign, <strong>Z</strong>=Zero, <strong>AC</strong>=Auxiliary Carry, <strong>P</strong>=Parity, <strong>CY</strong>=Carry
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4-3 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">🎯</div>
+        <div style="flex:1">
+          <div class="q-text">Differentiate between maskable and non-maskable interrupts in 8085.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Interrupts</span>
+            <span class="q-tag tag-marks">3/4 Marks</span>
+            <span class="q-tag" style="background:rgba(251,191,36,0.1);color:var(--gold);">4× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.4(a) OR</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.4(b)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.5(a)</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.4(b)</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Maskable vs Non-Maskable Interrupts:</strong><br/><br/>
+              <table style="width:100%;border-collapse:collapse;margin-top:8px;">
+                <tr style="background:rgba(108,99,255,0.1);">
+                  <th style="padding:8px;border:1px solid #363b56;text-align:left;">Parameter</th>
+                  <th style="padding:8px;border:1px solid #363b56;text-align:left;">Maskable</th>
+                  <th style="padding:8px;border:1px solid #363b56;text-align:left;">Non-Maskable</th>
+                </tr>
+                <tr>
+                  <td style="padding:8px;border:1px solid #363b56;">Definition</td>
+                  <td style="padding:8px;border:1px solid #363b56;">Can be disabled by software</td>
+                  <td style="padding:8px;border:1px solid #363b56;">Cannot be disabled</td>
+                </tr>
+                <tr style="background:rgba(255,255,255,0.02);">
+                  <td style="padding:8px;border:1px solid #363b56;">Examples in 8085</td>
+                  <td style="padding:8px;border:1px solid #363b56;">INTR, RST5.5, RST6.5, RST7.5</td>
+                  <td style="padding:8px;border:1px solid #363b56;">TRAP</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px;border:1px solid #363b56;">Control</td>
+                  <td style="padding:8px;border:1px solid #363b56;">EI/DI instructions or SIM</td>
+                  <td style="padding:8px;border:1px solid #363b56;">Always accepted</td>
+                </tr>
+                <tr style="background:rgba(255,255,255,0.02);">
+                  <td style="padding:8px;border:1px solid #363b56;">Priority</td>
+                  <td style="padding:8px;border:1px solid #363b56;">Lower (INTR lowest)</td>
+                  <td style="padding:8px;border:1px solid #363b56;">Highest priority</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px;border:1px solid #363b56;">Triggering</td>
+                  <td style="padding:8px;border:1px solid #363b56;">Level/Edge triggered</td>
+                  <td style="padding:8px;border:1px solid #363b56;">Both edge and level (TRAP)</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4-4 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">🎯</div>
+        <div style="flex:1">
+          <div class="q-text">Explain demultiplexing of AD0–AD7 data/address bus of 8085 with diagram.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Bus Demultiplexing</span>
+            <span class="q-tag tag-marks">4/7 Marks</span>
+            <span class="q-tag" style="background:rgba(251,191,36,0.1);color:var(--gold);">4× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.2(b)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.3(b) OR</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2025</span><span class="occ-session">Winter 2025 – Q.2(b)</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Demultiplexing of AD0–AD7 in 8085:</strong><br/><br/>
+              The 8085 has a <strong>multiplexed address/data bus</strong>. Pins AD0–AD7 carry both lower 8-bit address (A0–A7) during the first half of T1, and data during T2 and T3.<br/><br/>
+              <strong>Why Demultiplexing is Needed:</strong><br/>
+              Since both address and data share pins, we must separate them before connecting to memory or peripherals.<br/><br/>
+              <strong>Demultiplexing Circuit:</strong><br/>
+              Uses a <strong>74LS373 Latch</strong> (octal D-type latch):<br/>
+              <ul>
+                <li>AD0–AD7 → connected to inputs of 74LS373</li>
+                <li><code>ALE</code> signal → connected to EN (Enable/Latch Enable) of 74LS373</li>
+                <li>When ALE = HIGH (during T1), address appears on AD0–AD7 → latched in 74LS373</li>
+                <li>Outputs of 74LS373 give stable A0–A7</li>
+                <li>When ALE = LOW, AD0–AD7 carries data → latch holds address</li>
+              </ul><br/>
+              <strong>T-State Timeline:</strong><br/>
+              <pre>T1: ALE=HIGH → A0-A7 on AD0-AD7 → Latch captures address
+T2: ALE=LOW  → Data on AD0-AD7
+T3: ALE=LOW  → Data read/write occurs</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4-5 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">🎯</div>
+        <div style="flex:1">
+          <div class="q-text">Compare / Differentiate Memory-mapped I/O and I/O-mapped (Peripheral) I/O.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">I/O Techniques</span>
+            <span class="q-tag tag-marks">3/4 Marks</span>
+            <span class="q-tag" style="background:rgba(251,191,36,0.1);color:var(--gold);">4× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.3(b)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.4(b)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.4(a) OR</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.4(b) OR</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <table style="width:100%;border-collapse:collapse;">
+                <tr style="background:rgba(108,99,255,0.1);">
+                  <th style="padding:8px;border:1px solid #363b56;">Parameter</th>
+                  <th style="padding:8px;border:1px solid #363b56;">Memory-Mapped I/O</th>
+                  <th style="padding:8px;border:1px solid #363b56;">I/O-Mapped (Peripheral) I/O</th>
+                </tr>
+                <tr><td style="padding:8px;border:1px solid #363b56;">Address Space</td><td style="padding:8px;border:1px solid #363b56;">Shares 16-bit memory space</td><td style="padding:8px;border:1px solid #363b56;">Separate 8-bit I/O space (00H–FFH)</td></tr>
+                <tr style="background:rgba(255,255,255,0.02);"><td style="padding:8px;border:1px solid #363b56;">Instructions</td><td style="padding:8px;border:1px solid #363b56;">All memory instructions (MOV, LDA)</td><td style="padding:8px;border:1px solid #363b56;">IN and OUT only</td></tr>
+                <tr><td style="padding:8px;border:1px solid #363b56;">Control signal</td><td style="padding:8px;border:1px solid #363b56;">IO/M̅ = 0 (always)</td><td style="padding:8px;border:1px solid #363b56;">IO/M̅ = 1 for I/O</td></tr>
+                <tr style="background:rgba(255,255,255,0.02);"><td style="padding:8px;border:1px solid #363b56;">No. of ports</td><td style="padding:8px;border:1px solid #363b56;">Up to 65536</td><td style="padding:8px;border:1px solid #363b56;">Only 256</td></tr>
+                <tr><td style="padding:8px;border:1px solid #363b56;">Memory usage</td><td style="padding:8px;border:1px solid #363b56;">Reduces memory space</td><td style="padding:8px;border:1px solid #363b56;">Does not reduce memory space</td></tr>
+                <tr style="background:rgba(255,255,255,0.02);"><td style="padding:8px;border:1px solid #363b56;">Speed</td><td style="padding:8px;border:1px solid #363b56;">Slower (more address decoding)</td><td style="padding:8px;border:1px solid #363b56;">Faster (less decoding)</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4-6 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">🎯</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and Explain Timing Diagram of MVI A, 45H instruction in 8085.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Timing Diagram</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(251,191,36,0.1);color:var(--gold);">4× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.2(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.2(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.2(b) (MVI A,32H)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#fbbf24;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.2(b) (MOV A,B)</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Timing Diagram of MVI A, 45H:</strong><br/><br/>
+              <strong>Instruction:</strong> <code>MVI A, 45H</code> — Move Immediate to Accumulator<br/>
+              <strong>Opcode:</strong> 3EH &nbsp;&nbsp; <strong>Size:</strong> 2 bytes &nbsp;&nbsp; <strong>Machine Cycles:</strong> 2 (Opcode Fetch + Memory Read)<br/>
+              <strong>T-States:</strong> 7 (4 + 3)<br/><br/>
+              <strong>Machine Cycle 1 – Opcode Fetch (M1): 4 T-states</strong><br/>
+              <pre>T1: ALE=1, A8-A15=PCH, AD0-AD7=PCL (address), IO/M̄=0
+T2: ALE=0, RD̄=0, AD0-AD7=data (3EH opcode from memory)
+T3: Data (3EH) sampled, PC incremented
+T4: Instruction decoded, nothing on bus</pre>
+              <strong>Machine Cycle 2 – Memory Read (M2): 3 T-states</strong><br/>
+              <pre>T1: ALE=1, A8-A15=PCH, AD0-AD7=PCL (next address)
+T2: ALE=0, RD̄=0, AD0-AD7=data (45H operand)
+T3: Data (45H) sampled, loaded to A register</pre>
+              <strong>Signal Summary:</strong><br/>
+              <ul>
+                <li>ALE goes HIGH at T1 of each machine cycle to latch address</li>
+                <li>RD̄ goes LOW during T2-T3 for memory read</li>
+                <li>IO/M̄ = LOW (memory operation)</li>
+                <li>AD0–AD7 carries address during T1, data during T2-T3</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 3 TIMES ═══ -->
+  <div class="rep-group rep-3" id="grp-3">
+    <div class="rep-header">
+      <div class="rep-badge">3</div>
+      <div>
+        <div class="rep-title" style="color:var(--green);">Questions Asked 3 Times</div>
+        <div class="rep-subtitle">✅ Medium-High Priority</div>
+      </div>
+      <div class="rep-count-pill">10 questions</div>
+    </div>
+
+    <!-- Q3-1 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Explain the Flag Register of 8085 Microprocessor (all 5 flags with explanation).</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Flag Register</span>
+            <span class="q-tag tag-marks">3/7 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.1(a)</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.2(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.4(c)</span><span class="occ-marks">7 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Flag Register of 8085:</strong><br/><br/>
+              The flag register is an 8-bit register, but only 5 bits are used as flags:<br/>
+              <pre>Bit:  D7  D6  D5  D4  D3  D2  D1  D0
+Flag:  S   Z   0  AC   0   P   1  CY</pre>
+              <strong>S – Sign Flag (D7):</strong> Set to 1 if the result of an operation is negative (MSB = 1). Used in signed arithmetic.<br/><br/>
+              <strong>Z – Zero Flag (D6):</strong> Set to 1 if the result of an operation is zero. Used in loop control and conditional jumps (JZ, JNZ).<br/><br/>
+              <strong>AC – Auxiliary Carry Flag (D4):</strong> Set to 1 if there is a carry from bit 3 to bit 4. Used for BCD arithmetic (DAA instruction).<br/><br/>
+              <strong>P – Parity Flag (D2):</strong> Set to 1 if result has even number of 1s (even parity). Set to 0 for odd parity.<br/><br/>
+              <strong>CY – Carry Flag (D0):</strong> Set to 1 if an arithmetic operation generates a carry out of the MSB or a borrow. Used in multi-byte arithmetic.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-2 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">List and explain all interrupts available in 8085 microprocessor (hardware and software).</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Interrupts</span>
+            <span class="q-tag tag-marks">3/7 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.3(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.3(a) OR</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2025</span><span class="occ-session">Winter 2025 – Q.5(a) OR</span><span class="occ-marks">3 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Interrupts in 8085 Microprocessor:</strong><br/><br/>
+              An interrupt is a signal that causes the processor to suspend current execution and transfer control to an Interrupt Service Routine (ISR).<br/><br/>
+              <strong>Hardware Interrupts (5 total, priority order):</strong><br/><br/>
+              <strong>1. TRAP (RST 4.5) – Priority 1 (Highest):</strong><br/>
+              Non-maskable, both edge and level triggered. Cannot be disabled. Vector address: 0024H.<br/><br/>
+              <strong>2. RST 7.5 – Priority 2:</strong><br/>
+              Maskable, edge-triggered. Vector address: 003CH. Masked by SIM instruction.<br/><br/>
+              <strong>3. RST 6.5 – Priority 3:</strong><br/>
+              Maskable, level-triggered. Vector address: 0034H.<br/><br/>
+              <strong>4. RST 5.5 – Priority 4:</strong><br/>
+              Maskable, level-triggered. Vector address: 002CH.<br/><br/>
+              <strong>5. INTR – Priority 5 (Lowest):</strong><br/>
+              Maskable, level-triggered. Non-vectored; CPU sends INTA̅, then gets vector from external hardware.<br/><br/>
+              <strong>Software Interrupts (RST instructions):</strong><br/>
+              RST 0 (0000H), RST 1 (0008H), RST 2 (0010H), RST 3 (0018H), RST 4 (0020H), RST 5 (0028H), RST 6 (0030H), RST 7 (0038H)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-3 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and explain the Pin Diagram of 8085 Microprocessor.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">8085 Pin Diagram</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.1(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.5(c) OR (8086 pin)</span><span class="occ-marks">7 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>8085 Pin Diagram – Key Pins (40-pin DIP):</strong><br/><br/>
+              <strong>Address Bus:</strong> A8–A15 (8 bits, unidirectional output)<br/>
+              <strong>Multiplexed Address/Data Bus:</strong> AD0–AD7 (bidirectional)<br/><br/>
+              <strong>Control Signals:</strong><br/>
+              <code>ALE</code> – Address Latch Enable: HIGH during T1 to demultiplex AD0–AD7<br/>
+              <code>RD̅</code> – Read: LOW when data is being read from memory/IO<br/>
+              <code>WR̅</code> – Write: LOW when data is written to memory/IO<br/>
+              <code>IO/M̅</code> – HIGH for I/O operation, LOW for memory operation<br/><br/>
+              <strong>Interrupt Pins:</strong><br/>
+              <code>TRAP</code>, <code>RST7.5</code>, <code>RST6.5</code>, <code>RST5.5</code>, <code>INTR</code>, <code>INTA̅</code><br/><br/>
+              <strong>DMA Control:</strong><br/>
+              <code>HOLD</code> – Request to hold buses &nbsp;&nbsp; <code>HLDA</code> – Hold Acknowledge<br/><br/>
+              <strong>Serial I/O:</strong><br/>
+              <code>SID</code> – Serial Input Data &nbsp;&nbsp; <code>SOD</code> – Serial Output Data<br/><br/>
+              <strong>Clock & Power:</strong><br/>
+              <code>X1, X2</code> – Crystal input (operating frequency = crystal/2)<br/>
+              <code>CLK</code> – Clock output &nbsp;&nbsp; <code>RESET IN̅</code> – Reset input &nbsp;&nbsp; <code>RESET OUT</code><br/>
+              <code>Vcc</code> = +5V &nbsp;&nbsp; <code>Vss</code> = GND<br/><br/>
+              <strong>Status:</strong> <code>S0, S1</code> – Machine cycle status bits<br/>
+              <code>READY</code> – Memory ready signal (wait states)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-4 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and explain the block diagram / architecture of 8086 Microprocessor (BIU, EU).</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">8086 Architecture</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.5(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.5(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2025</span><span class="occ-session">Winter 2025 – Q.5(c) OR</span><span class="occ-marks">7 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Internal Architecture of 8086:</strong><br/><br/>
+              8086 is a 16-bit microprocessor with 20-bit address bus (1MB addressable memory). It has two independent units:<br/><br/>
+              <strong>1. Bus Interface Unit (BIU):</strong><br/>
+              Handles all bus operations. Contains:<br/>
+              <ul>
+                <li>Segment Registers: CS, DS, SS, ES (16-bit each)</li>
+                <li>Instruction Pointer (IP) – 16-bit</li>
+                <li>Instruction Queue – 6-byte FIFO prefetch queue</li>
+                <li>Address Adder: Physical Address = Segment × 10H + Offset</li>
+              </ul><br/>
+              <strong>2. Execution Unit (EU):</strong><br/>
+              Executes instructions decoded from queue. Contains:<br/>
+              <ul>
+                <li>General Purpose Registers: AX, BX, CX, DX (16-bit each, each split into high/low 8-bit)</li>
+                <li>Index Registers: SI, DI, BP, SP</li>
+                <li>ALU – 16-bit arithmetic and logic</li>
+                <li>Flags Register – 16-bit with 9 active flags</li>
+                <li>Instruction Decoder & Control Unit</li>
+              </ul><br/>
+              <strong>Key Feature – Pipelining:</strong> BIU fetches next instruction while EU executes current, improving performance.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-5 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and explain block diagram / architecture of 80286 Microprocessor.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">80286 Architecture</span>
+            <span class="q-tag tag-marks">4/7 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.5(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.5(c)</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.5(b)</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>80286 Microprocessor Architecture:</strong><br/><br/>
+              80286 is a 16-bit processor with 24-bit address bus (16MB RAM, vs 1MB for 8086). It operates in two modes:<br/><br/>
+              <strong>Block Diagram Units:</strong><br/><br/>
+              <strong>1. Bus Unit (BU):</strong> Manages external bus operations (address generation and data transfer). 24-bit physical address output.<br/><br/>
+              <strong>2. Instruction Unit (IU):</strong> Fetches and decodes instructions from the prefetch queue. Holds 6-byte instruction queue.<br/><br/>
+              <strong>3. Execution Unit (EU):</strong> Executes decoded instructions. Contains ALU, registers (AX, BX, CX, DX, SP, BP, SI, DI), and barrel shifter.<br/><br/>
+              <strong>4. Address Unit (AU):</strong> Calculates linear addresses in protected mode. Contains segment descriptor cache, limit checker, and protection checker.<br/><br/>
+              <strong>Operating Modes:</strong><br/>
+              <ul>
+                <li><strong>Real Mode:</strong> 1MB address space, compatible with 8086/8088</li>
+                <li><strong>Protected Virtual Address Mode:</strong> Up to 1GB virtual per task, memory protection with privilege levels (0–3)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-6 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Explain Assembler, Debugger and Linker with an example.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Programming Tools</span>
+            <span class="q-tag tag-marks">3 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.2(a)</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.2(a)</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2025</span><span class="occ-session">related – Programming Tools</span><span class="occ-marks">3 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Assembler:</strong> A program that translates assembly language source code into machine language (binary/hex opcodes).<br/>
+              Example: Converts <code>MOV A, B</code> → opcode <code>78H</code><br/><br/>
+              <strong>Debugger:</strong> A tool used to test and debug programs. Allows single-step execution, breakpoints, and viewing/modifying register/memory contents.<br/>
+              Example: 8085 simulator/debugger allows you to check register values after each instruction.<br/><br/>
+              <strong>Linker:</strong> Combines multiple object files (output of assembler) into a single executable file. Resolves external references and assigns final memory addresses.<br/>
+              Example: Links multiple assembled modules into one final .HEX or .COM file.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-7 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Explain Read/Write control signals for memory and I/O in 8085.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Control Signals</span>
+            <span class="q-tag tag-marks">4 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.2(b)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.2(b)</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.4(b) (generation)</span><span class="occ-marks">4 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Control signals in 8085 for R/W operations:</strong><br/><br/>
+              <strong>1. RD̅ (Read):</strong> Active LOW. When 0, the processor is reading data from memory or I/O.<br/>
+              <strong>2. WR̅ (Write):</strong> Active LOW. When 0, the processor is writing data to memory or I/O.<br/>
+              <strong>3. IO/M̅ (I/O or Memory):</strong><br/>
+              &nbsp;&nbsp;• HIGH (1) → I/O operation (IN or OUT instructions)<br/>
+              &nbsp;&nbsp;• LOW (0) → Memory operation<br/><br/>
+              <strong>Combined Control Signals:</strong><br/>
+              <table style="width:100%;border-collapse:collapse;margin-top:6px;">
+                <tr style="background:rgba(108,99,255,0.1);">
+                  <th style="padding:6px;border:1px solid #363b56;">IO/M̅</th>
+                  <th style="padding:6px;border:1px solid #363b56;">RD̅</th>
+                  <th style="padding:6px;border:1px solid #363b56;">WR̅</th>
+                  <th style="padding:6px;border:1px solid #363b56;">Operation</th>
+                </tr>
+                <tr><td style="padding:6px;border:1px solid #363b56;">0</td><td style="padding:6px;border:1px solid #363b56;">0</td><td style="padding:6px;border:1px solid #363b56;">1</td><td style="padding:6px;border:1px solid #363b56;">Memory Read</td></tr>
+                <tr style="background:rgba(255,255,255,0.02);"><td style="padding:6px;border:1px solid #363b56;">0</td><td style="padding:6px;border:1px solid #363b56;">1</td><td style="padding:6px;border:1px solid #363b56;">0</td><td style="padding:6px;border:1px solid #363b56;">Memory Write</td></tr>
+                <tr><td style="padding:6px;border:1px solid #363b56;">1</td><td style="padding:6px;border:1px solid #363b56;">0</td><td style="padding:6px;border:1px solid #363b56;">1</td><td style="padding:6px;border:1px solid #363b56;">I/O Read (IN)</td></tr>
+                <tr style="background:rgba(255,255,255,0.02);"><td style="padding:6px;border:1px solid #363b56;">1</td><td style="padding:6px;border:1px solid #363b56;">1</td><td style="padding:6px;border:1px solid #363b56;">0</td><td style="padding:6px;border:1px solid #363b56;">I/O Write (OUT)</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-8 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Differentiate vectored and non-vectored interrupts in 8085.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Interrupts</span>
+            <span class="q-tag tag-marks">3/4 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.4(b) OR</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.5(a) OR</span><span class="occ-marks">3 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – related Q.4(c)</span><span class="occ-marks">7 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <table style="width:100%;border-collapse:collapse;">
+                <tr style="background:rgba(108,99,255,0.1);">
+                  <th style="padding:8px;border:1px solid #363b56;">Parameter</th>
+                  <th style="padding:8px;border:1px solid #363b56;">Vectored</th>
+                  <th style="padding:8px;border:1px solid #363b56;">Non-Vectored</th>
+                </tr>
+                <tr><td style="padding:8px;border:1px solid #363b56;">ISR Address</td><td style="padding:8px;border:1px solid #363b56;">Fixed (pre-defined)</td><td style="padding:8px;border:1px solid #363b56;">Supplied by external hardware</td></tr>
+                <tr style="background:rgba(255,255,255,0.02);"><td style="padding:8px;border:1px solid #363b56;">Examples</td><td style="padding:8px;border:1px solid #363b56;">TRAP, RST5.5, RST6.5, RST7.5</td><td style="padding:8px;border:1px solid #363b56;">INTR</td></tr>
+                <tr><td style="padding:8px;border:1px solid #363b56;">Flexibility</td><td style="padding:8px;border:1px solid #363b56;">Less flexible (fixed location)</td><td style="padding:8px;border:1px solid #363b56;">More flexible (any location)</td></div></tr>
+                <tr style="background:rgba(255,255,255,0.02);"><td style="padding:8px;border:1px solid #363b56;">INTA̅ needed?</td><td style="padding:8px;border:1px solid #363b56;">No</td><td style="padding:8px;border:1px solid #363b56;">Yes (to get vector byte)</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-9 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Explain One-byte, Two-byte, Three-byte instruction formats and types of instruction sets in 8085.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Instruction Set</span>
+            <span class="q-tag tag-marks">4/7 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2022</span><span class="occ-session">Winter 2022 – Q.3(b) OR</span><span class="occ-marks">4 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2023</span><span class="occ-session">Winter 2023 – Q.4(c) OR</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.3(a) OR</span><span class="occ-marks">3 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>Instruction Formats in 8085:</strong><br/><br/>
+              <strong>1. One-Byte Instructions:</strong> Opcode only. No operand needed.<br/>
+              Examples: <code>MOV A,B</code> (78H), <code>CMA</code> (2FH), <code>NOP</code> (00H), <code>HLT</code> (76H)<br/><br/>
+              <strong>2. Two-Byte Instructions:</strong> Opcode + 1 byte data.<br/>
+              Examples: <code>MVI A, 32H</code> (3EH, 32H), <code>ANI FFH</code> (E6H, FFH)<br/><br/>
+              <strong>3. Three-Byte Instructions:</strong> Opcode + 2 bytes address/data (low byte then high byte).<br/>
+              Examples: <code>LDA 2050H</code> (3AH, 50H, 20H), <code>LXI H, 2050H</code> (21H, 50H, 20H)<br/><br/>
+              <strong>Types of Instruction Sets:</strong><br/>
+              <ul>
+                <li><strong>Data Transfer:</strong> MOV, MVI, LDA, STA, LHLD, SHLD, XCHG</li>
+                <li><strong>Arithmetic:</strong> ADD, ADI, SUB, SUI, INR, DCR, DAD, DAA</li>
+                <li><strong>Logical:</strong> ANA, ORA, XRA, CMA, CPI, ANI, ORI</li>
+                <li><strong>Branch:</strong> JMP, JZ, JNZ, JC, JNC, CALL, RET, RST</li>
+                <li><strong>Stack/Machine Control:</strong> PUSH, POP, SPHL, EI, DI, NOP, HLT</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3-10 -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">📌</div>
+        <div style="flex:1">
+          <div class="q-text">Write an 8085 assembly language program to generate a 1-second delay for a given crystal frequency.</div>
+          <div class="q-meta">
+            <span class="q-tag tag-topic">Delay Programs</span>
+            <span class="q-tag tag-marks">7 Marks</span>
+            <span class="q-tag" style="background:rgba(52,211,153,0.1);color:var(--green);">3× Repeated</span>
+          </div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details">
+        <div class="q-details-inner">
+          <div class="occurrences-title">📅 All Occurrences</div>
+          <div class="occ-list">
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.2(c) – 2MHz crystal</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.3(c) OR – 1MHz crystal</span><span class="occ-marks">7 marks</span></div>
+            <div class="occ-item"><div class="occ-dot" style="background:#34d399;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.4(c) OR</span><span class="occ-marks">7 marks</span></div>
+          </div>
+          <div class="answer-section">
+            <div class="answer-header">📝 Model Answer</div>
+            <div class="answer-box">
+              <strong>1-Second Delay Program for 8085 (2 MHz Crystal):</strong><br/><br/>
+              <strong>Clock Period:</strong> Crystal = 2MHz → Operating freq = 1MHz → T-state = 1μs<br/><br/>
+              <strong>Delay Calculation:</strong><br/>
+              Inner loop: DCX D (6 T-states) + JNZ (10 T-states) = 16μs per iteration<br/>
+              For 1 second: Need 1,000,000 / 16 ≈ 62,500 iterations → Use nested loops<br/><br/>
+              <strong>Program:</strong>
+              <pre>; 1-Second Delay (Crystal = 2MHz, T = 1μs)
+DELAY:
+    MVI B, 07H      ; Outer loop count
+OUTER:
+    LXI D, FFFFh    ; Inner loop count (65535)
+INNER:
+    DCX D           ; Decrement DE pair (6 T-states)
+    MOV A, E        ; Move E to A (4 T-states)
+    ORA D           ; OR D with A (4 T-states)
+    JNZ INNER       ; Jump if not zero (10 T-states)
+    DCR B           ; Decrement B (4 T-states)
+    JNZ OUTER       ; Jump if not zero (10 T-states)
+    RET             ; Return (10 T-states)</pre>
+              <strong>Note:</strong> Adjust loop counts based on crystal frequency. For 1 MHz crystal, T-state = 2μs, so reduce counts by half.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 2 TIMES ═══ -->
+  <div class="rep-group rep-2" id="grp-2">
+    <div class="rep-header">
+      <div class="rep-badge">2</div>
+      <div>
+        <div class="rep-title" style="color:var(--accent3);">Questions Asked 2 Times</div>
+        <div class="rep-subtitle">📘 Medium Priority</div>
+      </div>
+      <div class="rep-count-pill">15 questions</div>
+    </div>
+
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Explain subroutine in 8085 microprocessor with suitable example.</div>
+          <div class="q-meta"><span class="q-tag tag-topic">Subroutines</span><span class="q-tag tag-marks">3/4 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.3(a)</span><span class="occ-marks">3 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.4(b)</span><span class="occ-marks">4 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <strong>Subroutine:</strong> A group of instructions that perform a specific task and can be called multiple times from different places in the main program. Saves code duplication.<br/><br/>
+          <strong>CALL instruction:</strong> Pushes PC on stack, jumps to subroutine address.<br/>
+          <strong>RET instruction:</strong> Pops address from stack, returns to calling point.<br/><br/>
+          <strong>Example – Delay Subroutine:</strong>
+          <pre>; Main Program
+    MVI A, 05H
+    CALL DELAY      ; Call subroutine
+    HLT
+
+; Subroutine
+DELAY:
+    MVI C, FFH  ; Load counter
+LOOP:
+    DCR C       ; Decrement C
+    JNZ LOOP    ; Loop until C=0
+    RET         ; Return to caller</pre>
+        </div></div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Explain PUSH and POP instructions and concept of Stack in 8085.</div>
+          <div class="q-meta"><span class="q-tag tag-topic">Stack Operations</span><span class="q-tag tag-marks">3 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2022</span><span class="occ-session">Summer 2022 – Q.4(a) + Q.3(a)</span><span class="occ-marks">3 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.4(a)</span><span class="occ-marks">3 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <strong>Stack:</strong> A LIFO (Last In First Out) data structure in memory. The Stack Pointer (SP) register points to the top of stack.<br/><br/>
+          <strong>PUSH instruction:</strong> SP = SP – 2 (decremented by 2), then stores register pair content to [SP+1, SP].<br/>
+          Example: <code>PUSH B</code> → Pushes B (to SP+1) and C (to SP) onto stack.<br/><br/>
+          <strong>POP instruction:</strong> Loads register pair from [SP, SP+1], then SP = SP + 2.<br/>
+          Example: <code>POP H</code> → Pops [SP] to L and [SP+1] to H.<br/><br/>
+          <strong>Use:</strong> Preserving register values during subroutine calls.
+        </div></div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Explain segment registers in 8086 Microprocessor (CS, DS, SS, ES).</div>
+          <div class="q-meta"><span class="q-tag tag-topic">8086 Registers</span><span class="q-tag tag-marks">3/4 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.5(a) OR</span><span class="occ-marks">3 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2025</span><span class="occ-session">Summer 2025 – Q.5(b)</span><span class="occ-marks">4 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <strong>Segment Registers in 8086 (4 × 16-bit):</strong><br/><br/>
+          <strong>CS (Code Segment):</strong> Points to the segment containing the currently executing program code. Used with IP to form code address: CS × 10H + IP.<br/><br/>
+          <strong>DS (Data Segment):</strong> Points to the segment containing program data (variables, arrays). Used with SI/DI/BX for data addressing.<br/><br/>
+          <strong>SS (Stack Segment):</strong> Points to the stack area. Used with SP and BP. PUSH/POP operations use this segment.<br/><br/>
+          <strong>ES (Extra Segment):</strong> Additional data segment. Used for string operations (MOVS, LODS, etc.) as destination segment.<br/><br/>
+          <strong>Physical Address Calculation:</strong><br/>
+          Physical Address = Segment Register × 10H + Offset<br/>
+          Example: CS=1000H, IP=0500H → PA = 10000H + 0500H = 10500H
+        </div></div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Differentiate 80286 and 80386 Microprocessors.</div>
+          <div class="q-meta"><span class="q-tag tag-topic">Advanced MPs</span><span class="q-tag tag-marks">3 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.5(a)</span><span class="occ-marks">3 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.5(b) related</span><span class="occ-marks">4 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <table style="width:100%;border-collapse:collapse;">
+            <tr style="background:rgba(108,99,255,0.1);">
+              <th style="padding:8px;border:1px solid #363b56;">Feature</th>
+              <th style="padding:8px;border:1px solid #363b56;">80286</th>
+              <th style="padding:8px;border:1px solid #363b56;">80386</th>
+            </tr>
+            <tr><td style="padding:8px;border:1px solid #363b56;">Data Bus</td><td style="padding:8px;border:1px solid #363b56;">16-bit</td><td style="padding:8px;border:1px solid #363b56;">32-bit</td></tr>
+            <tr style="background:rgba(255,255,255,0.02);"><td style="padding:8px;border:1px solid #363b56;">Address Bus</td><td style="padding:8px;border:1px solid #363b56;">24-bit (16MB)</td><td style="padding:8px;border:1px solid #363b56;">32-bit (4GB)</td></tr>
+            <tr><td style="padding:8px;border:1px solid #363b56;">Virtual Memory</td><td style="padding:8px;border:1px solid #363b56;">1GB per task</td><td style="padding:8px;border:1px solid #363b56;">64TB</td></tr>
+            <tr style="background:rgba(255,255,255,0.02);"><td style="padding:8px;border:1px solid #363b56;">Modes</td><td style="padding:8px;border:1px solid #363b56;">Real + Protected</td><td style="padding:8px;border:1px solid #363b56;">Real + Protected + Virtual-8086</td></tr>
+            <tr><td style="padding:8px;border:1px solid #363b56;">Paging</td><td style="padding:8px;border:1px solid #363b56;">No</td><td style="padding:8px;border:1px solid #363b56;">Yes (4KB pages)</td></tr>
+          </table>
+        </div></div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Explain instruction set of 8085 Microprocessor (classification).</div>
+          <div class="q-meta"><span class="q-tag tag-topic">Instruction Set</span><span class="q-tag tag-marks">3/4 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.4(a)</span><span class="occ-marks">3 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">W2025</span><span class="occ-session">Winter 2025 – Q.3(b)</span><span class="occ-marks">4 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <strong>8085 Instruction Set (total ~74 basic instructions):</strong><br/><br/>
+          <strong>1. Data Transfer Group:</strong> MOV, MVI, LDA, STA, LDAX, STAX, LHLD, SHLD, LXI, PUSH, POP, XCHG, IN, OUT<br/><br/>
+          <strong>2. Arithmetic Group:</strong> ADD, ADC, ADI, ACI, SUB, SBB, SUI, SBI, INR, DCR, INX, DCX, DAD, DAA<br/><br/>
+          <strong>3. Logical Group:</strong> ANA, ANI, ORA, ORI, XRA, XRI, CMP, CPI, CMA, CMC, STC, RAL, RAR, RLC, RRC<br/><br/>
+          <strong>4. Branch Group:</strong> JMP, JC, JNC, JZ, JNZ, JP, JM, JPE, JPO, CALL, CC, CNC, CZ, CNZ, RET, RC, RNC, RZ, RNZ, RST 0-7<br/><br/>
+          <strong>5. Machine Control Group:</strong> NOP, HLT, DI, EI, SIM, RIM
+        </div></div>
+      </div></div>
+    </div>
+
+    <!-- More 2x questions summarized -->
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Draw and explain architecture of 80386 Microprocessor.</div>
+          <div class="q-meta"><span class="q-tag tag-topic">80386 Architecture</span><span class="q-tag tag-marks">4/7 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.5(b) OR</span><span class="occ-marks">4 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.5(c) OR</span><span class="occ-marks">7 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <strong>80386 (32-bit) Architecture:</strong><br/><br/>
+          <strong>Key Features:</strong> 32-bit data bus, 32-bit address bus (4GB addressing), 32-bit registers.<br/><br/>
+          <strong>Major Units:</strong><br/>
+          <ul>
+            <li><strong>Bus Interface Unit (BIU):</strong> Manages 32-bit external bus operations</li>
+            <li><strong>Code Prefetch Unit:</strong> 16-byte instruction prefetch queue</li>
+            <li><strong>Instruction Decode Unit:</strong> Decodes prefetched instructions</li>
+            <li><strong>Execution Unit (EU):</strong> 32-bit ALU, barrel shifter, 32-bit general purpose registers (EAX, EBX, ECX, EDX, ESI, EDI, ESP, EBP)</li>
+            <li><strong>Segmentation Unit:</strong> Translates logical to linear addresses</li>
+            <li><strong>Paging Unit:</strong> Translates linear to physical addresses (4KB pages, 2-level page tables)</li>
+          </ul><br/>
+          <strong>Operating Modes:</strong> Real Mode, Protected Mode, Virtual-8086 Mode
+        </div></div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Write assembly language program to find largest/smallest number from array stored in memory.</div>
+          <div class="q-meta"><span class="q-tag tag-topic">Programming</span><span class="q-tag tag-marks">7 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">W2021</span><span class="occ-session">Winter 2021 – Q.3(c) OR (largest)</span><span class="occ-marks">7 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2023</span><span class="occ-session">Summer 2023 – Q.3(a) OR (minimum)</span><span class="occ-marks">3 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <strong>Find Largest Number from Array (10 numbers from 3000H):</strong>
+          <pre>        LXI H, 3000H   ; Point to start of array
+        MVI C, 09H     ; Counter = 9 comparisons
+        MOV A, M       ; Load first number as max
+        INX H          ; Point to next
+LOOP:   CMP M          ; Compare A with [HL]
+        JNC SKIP       ; If A >= [HL], skip
+        MOV A, M       ; Else, A = [HL] (new max)
+SKIP:   INX H          ; Point to next
+        DCR C          ; Decrement counter
+        JNZ LOOP       ; Repeat
+        STA 4000H      ; Store largest at 4000H
+        HLT</pre>
+        </div></div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleCard(this)">
+      <div class="q-card-header">
+        <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">📖</div>
+        <div style="flex:1">
+          <div class="q-text">Explain the concept of segmentation in 8086 Microprocessor.</div>
+          <div class="q-meta"><span class="q-tag tag-topic">8086 Segmentation</span><span class="q-tag tag-marks">3/4 Marks</span><span class="q-tag" style="background:rgba(56,189,248,0.1);color:var(--accent3);">2× Repeated</span></div>
+        </div>
+        <div class="toggle-btn">▼</div>
+      </div>
+      <div class="q-details"><div class="q-details-inner">
+        <div class="occurrences-title">📅 All Occurrences</div>
+        <div class="occ-list">
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">S2024</span><span class="occ-session">Summer 2024 – Q.5(b) OR</span><span class="occ-marks">4 marks</span></div>
+          <div class="occ-item"><div class="occ-dot" style="background:#38bdf8;"></div><span class="occ-year">W2024</span><span class="occ-session">Winter 2024 – Q.5(a)</span><span class="occ-marks">3 marks</span></div>
+        </div>
+        <div class="answer-section"><div class="answer-header">📝 Model Answer</div>
+        <div class="answer-box">
+          <strong>Segmentation in 8086:</strong><br/><br/>
+          8086 has a 20-bit address bus but only 16-bit registers. To address 1MB (2^20 = 1,048,576 locations), it uses segmentation.<br/><br/>
+          <strong>Concept:</strong> Memory is divided into logical segments. Each segment can be up to 64KB (2^16).<br/><br/>
+          <strong>Physical Address Formula:</strong><br/>
+          <code>Physical Address = Segment × 10H + Offset</code><br/><br/>
+          <strong>Example:</strong><br/>
+          CS = 2000H, IP = 0300H<br/>
+          PA = 20000H + 0300H = 20300H<br/><br/>
+          <strong>4 Segment Registers:</strong><br/>
+          CS (Code), DS (Data), SS (Stack), ES (Extra/String)<br/><br/>
+          Each segment starts at a 16-byte (paragraph) boundary in physical memory.
+        </div></div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- ═══ 1 TIME ═══ -->
+  <div class="rep-group rep-1" id="grp-1">
+    <div class="rep-header">
+      <div class="rep-badge">1</div>
+      <div>
+        <div class="rep-title" style="color:#9ca3af;">Questions Asked Only Once</div>
+        <div class="rep-subtitle">📄 Low Repetition – Still Worth Knowing</div>
+      </div>
+      <div class="rep-count-pill">~140+ questions</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;color:var(--text2);font-size:13px;line-height:1.8;">
+      These questions appeared only once across all 9 exam papers. Key unique topics include:<br/><br/>
+      • <strong>S2022:</strong> Traffic light program, machine language vs assembly language, count FFH to 00H program<br/>
+      • <strong>S2023:</strong> CALL instruction timing diagram, BCD-to-HEX program using LXI, 80286 real vs protected mode<br/>
+      • <strong>W2021:</strong> 8085 vs 8086 differences, BCD to hexadecimal conversion, positive/negative value separation<br/>
+      • <strong>W2022:</strong> Electronic item switch ALP, SUN SPARC architecture, ARM 7 architecture, RRC vs RAR<br/>
+      • <strong>W2023:</strong> SUN SPARC, ARM architecture, conditional jump instructions, ending address calculation<br/>
+      • <strong>W2024:</strong> ALU and control unit role, 80286 vs 8086 improvement, 80286 programming model/data types<br/>
+      • <strong>W2025:</strong> ADI/SUI arithmetic example, JNZ conditional branch example, error finding in ALP
+    </div>
+  </div>
+
+  </div><!-- end rep-container -->
+</div>
+
+<!-- ══════ SECTION 2: IMPORTANT Q&A ══════ -->
+<div class="section" id="section-important">
+  <div class="sec-heading">
+    <h2>⭐ Most Important Frequently Asked Questions</h2>
+    <div class="sec-heading-line"></div>
+  </div>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:24px;">Based on repetition frequency across all 9 exam papers (2021–2025). Click any card to expand full answer.</p>
+
+  <div class="importance-grid">
+    <div class="imp-card hot" onclick="showTab('repetition');setTimeout(()=>document.querySelector('#grp-7').scrollIntoView({behavior:'smooth'}),100)">
+      <div class="imp-card-title">🏆 #1 Most Asked (7×)</div>
+      <div class="imp-card-q">Draw and explain internal architecture/block diagram of 8085 Microprocessor.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars">
+          <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+        </div>
+        <span style="font-size:11px;color:var(--red);font-weight:700;">7 MARKS × 7 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card hot" onclick="showTab('repetition');setTimeout(()=>document.querySelector('#grp-5').scrollIntoView({behavior:'smooth'}),100)">
+      <div class="imp-card-title">🥇 #2 Most Asked (5×)</div>
+      <div class="imp-card-q">Draw and explain internal block diagram of 8255A (PPI).</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--orange);font-weight:700;">7 MARKS × 5 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card hot" onclick="showTab('repetition');setTimeout(()=>document.querySelector('#grp-5').scrollIntoView({behavior:'smooth'}),100)">
+      <div class="imp-card-title">🥈 #3 Most Asked (5×)</div>
+      <div class="imp-card-q">Draw and explain internal block diagram of 8259A (PIC).</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--orange);font-weight:700;">7 MARKS × 5 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card warm" onclick="showTab('repetition');setTimeout(()=>document.querySelector('#grp-5').scrollIntoView({behavior:'smooth'}),100)">
+      <div class="imp-card-title">🥉 #4 Most Asked (5×)</div>
+      <div class="imp-card-q">Explain various addressing modes of 8085 with examples.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--gold);font-weight:700;">3–7 MARKS × 5 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card warm">
+      <div class="imp-card-title">🎯 High Priority (4×)</div>
+      <div class="imp-card-q">Interfacing 4KB EPROM with 8085 (starting at 0000H).</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--gold);font-weight:700;">7 MARKS × 4 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card warm">
+      <div class="imp-card-title">🎯 High Priority (4×)</div>
+      <div class="imp-card-q">Draw and explain Timing Diagram of MVI A, 45H instruction.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--gold);font-weight:700;">7 MARKS × 4 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card cool">
+      <div class="imp-card-title">📌 Good Priority (3×)</div>
+      <div class="imp-card-q">List and explain all interrupts in 8085 (TRAP, RST7.5, RST6.5, RST5.5, INTR).</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--accent2);font-weight:700;">3–7 MARKS × 3 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card cool">
+      <div class="imp-card-title">📌 Good Priority (3×)</div>
+      <div class="imp-card-q">Explain flag register of 8085 (S, Z, AC, P, CY) with diagram.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--accent2);font-weight:700;">3–7 MARKS × 3 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card cool">
+      <div class="imp-card-title">📌 Good Priority (3×)</div>
+      <div class="imp-card-q">Draw and explain internal architecture / logical block diagram of 8086.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--accent2);font-weight:700;">7 MARKS × 3 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card cool">
+      <div class="imp-card-title">📌 Good Priority (3×)</div>
+      <div class="imp-card-q">Write 8085 ALP to generate 1-second delay for given crystal frequency.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--accent2);font-weight:700;">7 MARKS × 3 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card cool">
+      <div class="imp-card-title">📌 Good Priority (3×)</div>
+      <div class="imp-card-q">Explain 8085 Programming Model and classify instruction set.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--accent2);font-weight:700;">4–7 MARKS × 3 EXAMS</span>
+      </div>
+    </div>
+
+    <div class="imp-card cool">
+      <div class="imp-card-title">📌 Good Priority (4×)</div>
+      <div class="imp-card-q">Differentiate maskable and non-maskable interrupts in 8085.</div>
+      <div class="imp-card-footer">
+        <div class="freq-stars"><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span></div>
+        <span style="font-size:11px;color:var(--accent2);font-weight:700;">3–4 MARKS × 4 EXAMS</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SECTION 3: TOPIC-WISE ══════ -->
+<div class="section" id="section-topicwise">
+  <div class="sec-heading">
+    <h2>📂 Topic-wise Repeated Questions</h2>
+    <div class="sec-heading-line"></div>
+  </div>
+
+  <!-- Topic 1 -->
+  <div class="topic-section">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="topic-icon">🔬</span>
+      <span class="topic-name">8085 Architecture & Internal Organization</span>
+      <span class="topic-count">7 repeated questions</span>
+      <span style="color:var(--text3);">▼</span>
+    </div>
+    <div class="topic-body" style="display:none;">
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(108,99,255,0.15);color:var(--accent2);">🔬</div>
+          <div style="flex:1">
+            <div class="q-text">Draw and explain internal block diagram/architecture of 8085. [7× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S23 S24 S25 W22 W24 W25</span><span class="q-tag tag-marks">7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">Refer to the detailed answer in the Repetition List section (7× repeated question). The 8085 internal architecture includes: ALU, Accumulator, General Purpose Registers (B,C,D,E,H,L), Flag Register (S,Z,AC,P,CY), Program Counter (16-bit), Stack Pointer (16-bit), Instruction Register & Decoder, Timing & Control Unit, Interrupt Control, Serial I/O (SID/SOD), and multiplexed AD0–AD7 bus with ALE signal for demultiplexing.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(108,99,255,0.15);color:var(--accent2);">🔬</div>
+          <div style="flex:1">
+            <div class="q-text">Explain 8085 Programming Model with diagram. [4× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">W21 W22 W23 S24</span><span class="q-tag tag-marks">4/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">Programming model includes: 6 GP registers (B,C,D,E,H,L), Accumulator A, Flag Register F (S,Z,AC,P,CY), 16-bit PC and SP. Flag register layout: D7=S, D6=Z, D5=0, D4=AC, D3=0, D2=P, D1=1, D0=CY.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(108,99,255,0.15);color:var(--accent2);">🔬</div>
+          <div style="flex:1">
+            <div class="q-text">Explain flag register of 8085 Microprocessor. [3× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S25 W22</span><span class="q-tag tag-marks">3/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">5 Flags: <strong>S</strong> (Sign, D7) – set when result is negative, <strong>Z</strong> (Zero, D6) – set when result is zero, <strong>AC</strong> (Auxiliary Carry, D4) – carry from bit 3 to 4 (BCD), <strong>P</strong> (Parity, D2) – set for even parity, <strong>CY</strong> (Carry, D0) – carry from MSB. Layout: D7=S, D6=Z, D5=0, D4=AC, D3=0, D2=P, D1=1, D0=CY.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(108,99,255,0.15);color:var(--accent2);">🔬</div>
+          <div style="flex:1">
+            <div class="q-text">Explain system bus / bus organization of 8085. [2× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">W21 S25</span><span class="q-tag tag-marks">3/4 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>8085 has 3 buses:</strong><br/>• <strong>Address Bus:</strong> 16-bit unidirectional (A8–A15 pure, AD0–AD7 multiplexed). Addresses 64KB (0000H–FFFFH).<br/>• <strong>Data Bus:</strong> 8-bit bidirectional (AD0–AD7, demultiplexed). Carries data between CPU and memory/IO.<br/>• <strong>Control Bus:</strong> ALE, RD̄, WR̄, IO/M̄, S0, S1, HOLD, HLDA, READY, RESET IN, RESET OUT, INTR, INTĀ.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(108,99,255,0.15);color:var(--accent2);">🔬</div>
+          <div style="flex:1">
+            <div class="q-text">Explain demultiplexing of AD0–AD7 in 8085. [4× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S23 S25 W25</span><span class="q-tag tag-marks">4/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">Uses 74LS373 latch. ALE is HIGH during T1 → AD0–AD7 carries address → latched by 74LS373. When ALE goes LOW → AD0–AD7 carries data. Latch output (A0–A7) remains stable throughout.</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="topic-section">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="topic-icon">🖥️</span>
+      <span class="topic-name">8086, 80286 & 80386 Microprocessors</span>
+      <span class="topic-count">8 repeated questions</span>
+      <span style="color:var(--text3);">▼</span>
+    </div>
+    <div class="topic-body" style="display:none;">
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(244,114,182,0.15);color:var(--pink);">🖥️</div>
+          <div style="flex:1">
+            <div class="q-text">Draw and explain internal architecture/block diagram of 8086. [3× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S23 W25</span><span class="q-tag tag-marks">7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>8086 Architecture:</strong> Two independent units — <strong>BIU</strong> (Bus Interface Unit) and <strong>EU</strong> (Execution Unit). BIU handles bus operations, contains CS/DS/SS/ES segment registers, IP, and 6-byte instruction queue. EU executes instructions, contains AX/BX/CX/DX (16-bit), SI/DI/BP/SP, 16-bit ALU, and flags. Pipelining: BIU prefetches while EU executes.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(244,114,182,0.15);color:var(--pink);">🖥️</div>
+          <div style="flex:1">
+            <div class="q-text">Draw and explain architecture of 80286. [3× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S23 S25 W21</span><span class="q-tag tag-marks">4/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>80286:</strong> 16-bit processor, 24-bit address (16MB). 4 units: Bus Unit (BU), Instruction Unit (IU), Execution Unit (EU), Address Unit (AU). Two modes: Real Mode (1MB) and Protected Mode (1GB/task with 4 privilege levels). Unlike 80386, no paging support.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(244,114,182,0.15);color:var(--pink);">🖥️</div>
+          <div style="flex:1">
+            <div class="q-text">Draw and explain architecture of 80386. [2× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">W21 S24</span><span class="q-tag tag-marks">4/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>80386:</strong> 32-bit processor, 32-bit address (4GB). 6 units: BIU, Code Prefetch Unit, Instruction Decode Unit, EU (32-bit), Segmentation Unit, Paging Unit. Modes: Real, Protected, Virtual-8086. Registers are 32-bit (EAX, EBX, ECX, EDX, ESI, EDI, ESP, EBP). Supports paging with 4KB pages.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(244,114,182,0.15);color:var(--pink);">🖥️</div>
+          <div style="flex:1">
+            <div class="q-text">Explain concept of segmentation in 8086. [2× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S24 W24</span><span class="q-tag tag-marks">3/4 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">PA = Segment × 10H + Offset. 4 segments: CS (code), DS (data), SS (stack), ES (extra). Each segment up to 64KB. Allows 20-bit address from 16-bit registers. Example: CS=2000H, IP=0300H → PA = 20000H+0300H = 20300H.</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 3 -->
+  <div class="topic-section">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="topic-icon">⚡</span>
+      <span class="topic-name">Interrupts in 8085</span>
+      <span class="topic-count">6 repeated questions</span>
+      <span style="color:var(--text3);">▼</span>
+    </div>
+    <div class="topic-body" style="display:none;">
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(248,113,113,0.15);color:var(--red);">⚡</div>
+          <div style="flex:1">
+            <div class="q-text">List and explain all interrupts in 8085. [3× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 W21 W25</span><span class="q-tag tag-marks">3/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>Priority order (high to low):</strong><br/>1. <strong>TRAP</strong> (non-maskable, both edge & level, 0024H) → Highest<br/>2. <strong>RST 7.5</strong> (maskable, edge-triggered, 003CH)<br/>3. <strong>RST 6.5</strong> (maskable, level-triggered, 0034H)<br/>4. <strong>RST 5.5</strong> (maskable, level-triggered, 002CH)<br/>5. <strong>INTR</strong> (maskable, level-triggered, non-vectored) → Lowest<br/>Software: RST 0–7 (programmable restart instructions)</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(248,113,113,0.15);color:var(--red);">⚡</div>
+          <div style="flex:1">
+            <div class="q-text">Differentiate maskable vs non-maskable interrupts. [4× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S25 W22 W23 S24</span><span class="q-tag tag-marks">3/4 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">Maskable (INTR, RST5.5, RST6.5, RST7.5): Can be disabled by DI instruction or SIM. Non-maskable (TRAP): Cannot be disabled, always accepted, highest priority, both edge and level triggered.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(248,113,113,0.15);color:var(--red);">⚡</div>
+          <div style="flex:1">
+            <div class="q-text">Differentiate vectored vs non-vectored interrupts. [3× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">W22 W23 W24</span><span class="q-tag tag-marks">3/4 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">Vectored (TRAP, RST5.5/6.5/7.5): Fixed ISR address, no INTĀ needed. Non-vectored (INTR): ISR address supplied by external hardware via INTĀ acknowledge cycle. More flexible but needs extra hardware.</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 4 -->
+  <div class="topic-section">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="topic-icon">🔌</span>
+      <span class="topic-name">8255A PPI & 8259A PIC Interfacing</span>
+      <span class="topic-count">5 repeated questions</span>
+      <span style="color:var(--text3);">▼</span>
+    </div>
+    <div class="topic-body" style="display:none;">
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">🔌</div>
+          <div style="flex:1">
+            <div class="q-text">Draw and explain block diagram of 8255A. [5× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S24 W21 W22 W25</span><span class="q-tag tag-marks">3/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>8255A PPI:</strong> Contains Data Bus Buffer, R/W Control Logic, Group A & B Control, Port A (8-bit), Port B (8-bit), Port C (8-bit). Modes: Mode 0 (basic I/O), Mode 1 (strobed/handshake), Mode 2 (bidirectional, Port A only), BSR Mode (bit set/reset on Port C). Port select: A1A0=00→A, 01→B, 10→C, 11→Control.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">🔌</div>
+          <div style="flex:1">
+            <div class="q-text">Draw and explain block diagram of 8259A. [5× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S24 S25 W21 W22</span><span class="q-tag tag-marks">7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>8259A PIC:</strong> Contains IRR (Interrupt Request Register), ISR (In-Service Register), IMR (Interrupt Mask Register), Priority Resolver, Data Bus Buffer, R/W Control Logic, Cascade Buffer. Flow: IR0–IR7 → IRR → Priority Resolver → INT to CPU → CPU sends INTĀ → ISR set, IRR cleared → CPU fetches vector → executes ISR → EOI resets ISR.</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 5 -->
+  <div class="topic-section">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="topic-icon">💾</span>
+      <span class="topic-name">Memory Interfacing</span>
+      <span class="topic-count">4 repeated questions</span>
+      <span style="color:var(--text3);">▼</span>
+    </div>
+    <div class="topic-body" style="display:none;">
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">💾</div>
+          <div style="flex:1">
+            <div class="q-text">Interface 4KB EPROM with 8085 (starting address 0000H). [4× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S23 S24 W24</span><span class="q-tag tag-marks">7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">4KB = 4096 → 12 address lines (A0–A11). Range: 0000H–0FFFH. A12–A15 used for CĒ: CĒ = A12 + A13 + A14 + A15 (NOR gate). Connect AD0–AD7 (demultiplexed) to D0–D7. ALE → 74LS373 → A0–A7. IO/M̄ AND RD̄ → OĒ of EPROM. For multiple chips, use 74LS138 decoder.</div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(251,191,36,0.15);color:var(--gold);">💾</div>
+          <div style="flex:1">
+            <div class="q-text">Compare Memory-mapped I/O vs I/O-mapped I/O. [4× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S22 S23 S24 W23</span><span class="q-tag tag-marks">3/4 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">Memory-mapped: Shares 16-bit address space, any memory instruction, IO/M̄=0. I/O-mapped: Separate 8-bit space (256 ports), only IN/OUT, IO/M̄=1. Memory-mapped uses more address space but provides more instructions; I/O-mapped is simpler and faster.</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 6 -->
+  <div class="topic-section">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="topic-icon">⏱️</span>
+      <span class="topic-name">Timing Diagrams & Instruction Cycle</span>
+      <span class="topic-count">5 repeated questions</span>
+      <span style="color:var(--text3);">▼</span>
+    </div>
+    <div class="topic-body" style="display:none;">
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(56,189,248,0.15);color:var(--accent3);">⏱️</div>
+          <div style="flex:1">
+            <div class="q-text">Draw timing diagram of MVI A, 45H. [4× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">W23 W24 S24 S25</span><span class="q-tag tag-marks">4/7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">2 machine cycles, 7 T-states. M1 (Opcode Fetch, 4 T-states): T1: ALE=1, address on bus; T2: RD̄=0, data bus has opcode 3EH; T3: opcode sampled; T4: decode. M2 (Memory Read, 3 T-states): T1: ALE=1, next address; T2: RD̄=0, data=45H; T3: 45H loaded to A. IO/M̄=0 throughout.</div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 7 -->
+  <div class="topic-section">
+    <div class="topic-header" onclick="toggleTopic(this)">
+      <span class="topic-icon">💻</span>
+      <span class="topic-name">Assembly Language Programming</span>
+      <span class="topic-count">8 repeated question types</span>
+      <span style="color:var(--text3);">▼</span>
+    </div>
+    <div class="topic-body" style="display:none;">
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">💻</div>
+          <div style="flex:1">
+            <div class="q-text">Write 8085 ALP to generate 1-second delay. [3× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">S23 S25 W24</span><span class="q-tag tag-marks">7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box">
+            <pre>DELAY:  MVI B, 07H
+OUTER:  LXI D, FFFFh
+INNER:  DCX D          ; 6T
+        MOV A, E       ; 4T
+        ORA D          ; 4T
+        JNZ INNER      ; 10T = 24T/iter
+        DCR B
+        JNZ OUTER
+        RET</pre>
+            Adjust D register value based on crystal frequency for exact 1-second delay.
+          </div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">💻</div>
+          <div style="flex:1">
+            <div class="q-text">Write 8085 ALP to sort numbers in ascending/descending order. [2× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">W21 S24</span><span class="q-tag tag-marks">7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>Bubble Sort (Ascending) for 5 numbers at 3000H:</strong>
+            <pre>      LXI H, 3000H
+      MVI D, 04H     ; outer loop
+OUTER:LXI H, 3000H
+      MOV C, D
+INNER:MOV A, M
+      INX H
+      CMP M
+      JC  SKIP
+      MOV B, M       ; swap
+      MOV M, A
+      DCX H
+      MOV M, B
+      INX H
+SKIP: DCR C
+      JNZ INNER
+      DCR D
+      JNZ OUTER
+      HLT</pre>
+          </div></div>
+        </div></div>
+      </div>
+      <div class="q-card" onclick="toggleCard(this)">
+        <div class="q-card-header">
+          <div class="q-icon" style="background:rgba(52,211,153,0.15);color:var(--green);">💻</div>
+          <div style="flex:1">
+            <div class="q-text">Write 8085 ALP to add/subtract two 8-bit numbers with flowchart. [2× Repeated]</div>
+            <div class="q-meta"><span class="q-tag tag-year">W25 W25</span><span class="q-tag tag-marks">7 Marks</span></div>
+          </div>
+          <div class="toggle-btn">▼</div>
+        </div>
+        <div class="q-details"><div class="q-details-inner">
+          <div class="answer-section"><div class="answer-header">📝 Answer</div>
+          <div class="answer-box"><strong>Addition of two 8-bit numbers:</strong>
+            <pre>2000: MVI A, 25H   ; Load first number
+2002: MVI B, 30H   ; Load second number
+2004: ADD B        ; A = A + B
+2005: STA 3000H    ; Store result
+2008: HLT</pre>
+            <strong>Subtraction:</strong>
+            <pre>2000: MVI A, 55H
+2002: MVI B, 25H
+2004: SUB B        ; A = A - B
+2005: STA 3000H
+2008: HLT</pre>
+          </div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SECTION 4: MARKS VARIATION ══════ -->
+<div class="section" id="section-marksvar">
+  <div class="sec-heading">
+    <h2>⚖️ Questions Asked with Different Mark Weights</h2>
+    <div class="sec-heading-line"></div>
+  </div>
+  <p style="color:var(--text2);font-size:13px;margin-bottom:24px;">The same question appears in different exams with different marks allocated. Be prepared with both detailed (7-mark) and brief (3-mark) versions.</p>
+
+  <div class="marks-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Question Topic</th>
+          <th>3 Marks</th>
+          <th>4 Marks</th>
+          <th>7 Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Addressing Modes of 8085</strong></td>
+          <td><span class="mark-pill mark-3">W22, W25</span></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">W21, S23, S24</span></td>
+        </tr>
+        <tr>
+          <td><strong>8085 Architecture/Block Diagram</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">S22,S23,S24,S25,W22,W24,W25</span></td>
+        </tr>
+        <tr>
+          <td><strong>8085 Programming Model</strong></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-4">W22, S24</span></td>
+          <td><span class="mark-pill mark-7">W21, W23</span></td>
+        </tr>
+        <tr>
+          <td><strong>Flag Register of 8085</strong></td>
+          <td><span class="mark-pill mark-3">S22</span></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">S25, W22</span></td>
+        </tr>
+        <tr>
+          <td><strong>8255A Block Diagram</strong></td>
+          <td><span class="mark-pill mark-3">W25 (mention)</span></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">S22, S24, W21, W22</span></td>
+        </tr>
+        <tr>
+          <td><strong>8259A Block Diagram</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">S22,S24,S25,W21,W22</span></td>
+        </tr>
+        <tr>
+          <td><strong>Demultiplexing of AD0–AD7</strong></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-4">S22, S23, W25</span></td>
+          <td><span class="mark-pill mark-7">S25</span></td>
+        </tr>
+        <tr>
+          <td><strong>Memory-mapped vs I/O-mapped</strong></td>
+          <td><span class="mark-pill mark-3">S24</span></td>
+          <td><span class="mark-pill mark-4">S22, S23, W23</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Maskable vs Non-Maskable Interrupts</strong></td>
+          <td><span class="mark-pill mark-3">S25, W23</span></td>
+          <td><span class="mark-pill mark-4">W22, S24</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>All Interrupts of 8085</strong></td>
+          <td><span class="mark-pill mark-3">W21, W25</span></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">S22</span></td>
+        </tr>
+        <tr>
+          <td><strong>Timing Diagram (MVI A)</strong></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-4">S24, S25</span></td>
+          <td><span class="mark-pill mark-7">W23, W24</span></td>
+        </tr>
+        <tr>
+          <td><strong>4KB EPROM Interfacing</strong></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-4">W24 (related)</span></td>
+          <td><span class="mark-pill mark-7">S22, S23, S24</span></td>
+        </tr>
+        <tr>
+          <td><strong>Subroutine in 8085</strong></td>
+          <td><span class="mark-pill mark-3">W21</span></td>
+          <td><span class="mark-pill mark-4">S25</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Instruction Set / One/Two/Three Byte</strong></td>
+          <td><span class="mark-pill mark-3">S24</span></td>
+          <td><span class="mark-pill mark-4">W22</span></td>
+          <td><span class="mark-pill mark-7">W23</span></td>
+        </tr>
+        <tr>
+          <td><strong>8086 Block Diagram</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">S22, S23, W25</span></td>
+        </tr>
+        <tr>
+          <td><strong>80286 Architecture</strong></td>
+          <td>—</td>
+          <td><span class="mark-pill mark-4">W21</span></td>
+          <td><span class="mark-pill mark-7">S23, S25</span></td>
+        </tr>
+        <tr>
+          <td><strong>Vectored vs Non-Vectored</strong></td>
+          <td><span class="mark-pill mark-3">W23</span></td>
+          <td><span class="mark-pill mark-4">W22</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>1-Second Delay Program</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="mark-pill mark-7">S23, S25, W24</span></td>
+        </tr>
+        <tr>
+          <td><strong>PUSH and POP / Stack</strong></td>
+          <td><span class="mark-pill mark-3">S22, S24</span></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Assembler, Debugger, Linker</strong></td>
+          <td><span class="mark-pill mark-3">W23, W24</span></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:8px;">
+    <div style="font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:12px;">💡 Strategy for Different Mark Weights</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.8;">
+      <strong style="color:var(--text);">For 3-mark questions:</strong> Write concise definitions/comparisons. 1–2 lines per point. 3–4 key points maximum.<br/>
+      <strong style="color:var(--text);">For 4-mark questions:</strong> Brief explanation + a small diagram or table. 4–5 points with one example.<br/>
+      <strong style="color:var(--text);">For 7-mark questions:</strong> Full explanation + labeled block diagram + working principle + examples. Minimum 6–8 distinct points.
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <strong>GTU MPI Exam Analysis</strong> • Subject: Microprocessor & Interfacing (3160712) • Papers: S2022 to W2025<br/>
+  <span style="margin-top:6px;display:block;">Deep analysis of 9 exam papers • 225 total questions • Generated for exam preparation</span>
+</footer>
+
+<script>
+  // ─── Tab Navigation ───
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('section-' + id).classList.add('active');
+    document.getElementById('section-' + id).classList.add('fade-in');
+    document.getElementById('tab-' + id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => document.getElementById('section-' + id).classList.remove('fade-in'), 400);
+  }
+
+  // ─── Toggle Card ───
+  function toggleCard(card) {
+    const wasOpen = card.classList.contains('open');
+    card.classList.toggle('open', !wasOpen);
+  }
+
+  // ─── Toggle Topic ───
+  function toggleTopic(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('span:last-child');
+    if (body.style.display === 'none') {
+      body.style.display = 'block';
+      arrow.textContent = '▲';
+      header.style.borderColor = 'var(--border2)';
+    } else {
+      body.style.display = 'none';
+      arrow.textContent = '▼';
+      header.style.borderColor = 'var(--border)';
+    }
+  }
+
+  // ─── Search ───
+  function filterQuestions() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('#section-repetition .q-card').forEach(card => {
+      const text = card.querySelector('.q-text').textContent.toLowerCase();
+      card.style.display = text.includes(query) ? '' : 'none';
+    });
+    // Show/hide group headers
+    document.querySelectorAll('#rep-container .rep-group').forEach(group => {
+      const visible = [...group.querySelectorAll('.q-card')].some(c => c.style.display !== 'none');
+      group.style.display = visible ? '' : 'none';
+    });
+  }
+
+  // ─── Scroll-based animations ───
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.q-card, .imp-card, .topic-section').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
