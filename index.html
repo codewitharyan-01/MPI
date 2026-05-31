@@ -1,513 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IoT Important Questions With Answers</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#f4f1e8;color:#17202a}header{background:#101827;color:#fff;padding:26px;border-bottom:4px solid #0f8f70}.wrap{max-width:1180px;margin:0 auto}h1{margin:0 0 8px;font-size:30px}.sub{color:#cbd5e1;line-height:1.45}main{max-width:1180px;margin:0 auto;padding:20px}.tools{position:sticky;top:0;background:rgba(244,241,232,.96);backdrop-filter:blur(10px);z-index:2;display:grid;grid-template-columns:1fr 180px auto auto;gap:10px;padding:12px 0}input,select,button{font:inherit;border-radius:8px}input,select{border:1px solid #d9ded7;background:#fff;padding:12px}button{border:0;background:#0f8f70;color:#fff;font-weight:800;padding:12px 14px;cursor:pointer}.qa{display:grid;grid-template-columns:52px 1fr;gap:14px;background:#fffdf8;border:1px solid #d9ded7;border-left:5px solid #0f8f70;border-radius:8px;padding:15px;margin:14px 0}.rank{width:38px;height:38px;border-radius:8px;background:#101827;color:#fff;display:grid;place-items:center;font-weight:900}.qtop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}h2{font-size:18px;line-height:1.4;margin:0}.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.badges span{background:#e6f4ef;color:#075e4b;border-radius:999px;padding:5px 8px;font-size:12px;font-weight:800;white-space:nowrap}.meta{font-size:12px;color:#64748b;margin:8px 0 12px}details{border-top:1px dashed #d9ded7;padding-top:10px}summary{font-weight:900;color:#0f766e;cursor:pointer}ul{margin:10px 0 0;padding-left:20px;display:grid;gap:9px;line-height:1.55}pre{white-space:pre-wrap;background:#101827;color:#e5e7eb;padding:12px;border-radius:8px;overflow:auto;line-height:1.45}.hidden{display:none}@media(max-width:760px){header,main{padding-left:14px;padding-right:14px}.tools{grid-template-columns:1fr}.qa{grid-template-columns:1fr}.qtop{display:block}.badges{justify-content:flex-start;margin-top:8px}}@media print{header,.tools{display:none}body{background:#fff}.qa{break-inside:avoid}details{display:block}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTU System Software - Most Repeated Questions</title>
+    <style>
+        :root {
+            --primary: #6366F1;
+            --secondary: #10B981;
+            --dark: #0F172A;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #818CF8, #34D399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.05em;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .questions-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out backwards;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .badges {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge.freq {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818CF8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .badge.freq.high {
+            background: rgba(239, 68, 68, 0.2);
+            color: #F87171;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .badge.marks {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34D399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-<header><div class="wrap"><h1>IoT Important Questions With Answers</h1><div class="sub">Top 30 important questions selected from repeat frequency, recency, and prediction score. Use this page for direct exam revision.</div></div></header>
-<main>
-  <div class="tools">
-    <input id="search" placeholder="Search question or topic...">
-    <select id="cat"><option value="all">All categories</option><option>Applications</option><option>Architecture</option><option>Basics</option><option>Cloud/Fog</option><option>Hardware</option><option>Protocols</option><option>Security</option></select>
-    <button id="toggle">Collapse answers</button>
-    <button id="print">Print</button>
-  </div>
-  <section id="list">
-        <article class="qa" data-search="explain various security issues and need for developing iot based application. security applic cloud importance iot issu justify privaci secur" data-cat="Security">
-          <div class="rank">1</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain various security issues and need for developing IOT based application.</h2>
-              <div class="badges"><span>9x repeated</span><span>Security</span><span>Score 191</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - S2025 [3160716] [GTU Ranker].pdf, IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT security is required because IoT devices collect real-world data, control physical objects, and usually remain connected to the internet.</li><li>Major issues include weak authentication, default passwords, insecure firmware, unencrypted communication, poor key management, insecure APIs, and lack of regular updates.</li><li>Privacy is also a serious issue because sensors may collect location, health, camera, voice, and usage data.</li><li>A secure IoT application should provide authentication, authorization, confidentiality, integrity, availability, device identity, secure boot, encrypted storage, and secure OTA updates.</li><li>Good practice: use TLS/DTLS, strong passwords or certificates, least privilege access, signed firmware, logging, monitoring, and network segmentation.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="what are the challenges of iot security? security challeng iot secur" data-cat="Security">
-          <div class="rank">2</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>What are the challenges of IOT security?</h2>
-              <div class="badges"><span>7x repeated</span><span>Security</span><span>Score 156</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2023 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf, IoTA - W2025 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT security is difficult because devices are resource constrained, widely distributed, heterogeneous, and often physically accessible to attackers.</li><li>Key challenges are limited CPU/memory, weak default credentials, insecure communication, poor patching, insecure cloud APIs, privacy leakage, botnet attacks, and device cloning.</li><li>Many IoT devices run for years, so outdated firmware and unsupported hardware become a long-term risk.</li><li>Scalability is another challenge because thousands or millions of devices must be authenticated, updated, monitored, and revoked when compromised.</li><li>Solutions include secure design, encryption, strong identity, access control, secure update mechanisms, intrusion detection, and regular vulnerability testing.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain various levels of iot. architecture iot level" data-cat="Architecture">
-          <div class="rank">3</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain various levels of IoT.</h2>
-              <div class="badges"><span>5x repeated</span><span>Architecture</span><span>Score 124</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - S2025 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT levels describe the structure of an IoT solution from simple local sensing to large cloud-based systems.</li><li>Level 1: single device performs sensing/actuation and local processing.</li><li>Level 2: device sends data to cloud for storage, monitoring, and remote access.</li><li>Level 3: multiple devices communicate through a gateway, which performs protocol conversion and preprocessing.</li><li>Level 4: cloud performs analytics, visualization, and control for many devices.</li><li>Level 5: edge/fog and cloud are combined for faster response and large-scale analytics.</li><li>Level 6: enterprise-level IoT with big data, AI/ML, automation, security, and business integration.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="what is fog computing? list the characteristics of fog computing. cloud/fog characteristic comput detail fog" data-cat="Cloud/Fog">
-          <div class="rank">4</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>What is fog computing? List the characteristics of fog computing.</h2>
-              <div class="badges"><span>5x repeated</span><span>Cloud/Fog</span><span>Score 120</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2023 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf, IoTA - W2025 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Fog computing extends cloud services closer to IoT devices by placing storage, processing, and analytics at gateways, routers, edge servers, or local nodes.</li><li>It reduces latency because data does not always need to travel to a distant cloud.</li><li>Characteristics: low latency, location awareness, distributed architecture, mobility support, real-time processing, scalability, interoperability, and bandwidth saving.</li><li>Fog nodes can filter, aggregate, and analyze data before sending important information to the cloud.</li><li>Examples include smart traffic signals, industrial monitoring, healthcare monitoring, and smart grids where fast local decisions are required.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain coap. list the key features of coap protocols coap featur key mqtt out" data-cat="Protocols">
-          <div class="rank">5</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain CoAP. List the key features of CoAP</h2>
-              <div class="badges"><span>5x repeated</span><span>Protocols</span><span>Score 116</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2023 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>CoAP stands for Constrained Application Protocol. It is a lightweight web transfer protocol designed for constrained IoT devices and low-power networks.</li><li>CoAP follows a REST model like HTTP and supports methods such as GET, POST, PUT, and DELETE.</li><li>It usually runs over UDP, which makes it lighter than HTTP over TCP.</li><li>Key features: low overhead, compact binary header, confirmable/non-confirmable messages, observe mechanism, resource discovery, multicast support, and DTLS security.</li><li>CoAP is useful in sensor networks, smart homes, automation, and M2M communication where memory, power, and bandwidth are limited.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="what is arduino? explain features of arduino architecture. architecture architect arduino featur" data-cat="Architecture">
-          <div class="rank">6</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>What is Arduino? Explain features of Arduino architecture.</h2>
-              <div class="badges"><span>4x repeated</span><span>Architecture</span><span>Score 110</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf, IoTA - W2025 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Arduino is an open-source electronics platform based on easy-to-use hardware and software for building embedded and IoT projects.</li><li>Arduino boards commonly use AVR microcontrollers such as ATmega328P in Arduino Uno.</li><li>Main architectural features include digital I/O pins, analog input pins, PWM pins, timers, ADC, serial communication, USB interface, voltage regulator, oscillator, and bootloader.</li><li>It supports communication protocols such as UART, SPI, and I2C.</li><li>Arduino IDE provides simple C/C++ based programming with functions like setup() and loop().</li><li>It is popular because it is low cost, beginner friendly, reusable, and compatible with many sensors and modules.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="draw and explain iot architecture. architecture architect iot" data-cat="Architecture">
-          <div class="rank">7</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Draw and explain IOT architecture.</h2>
-              <div class="badges"><span>3x repeated</span><span>Architecture</span><span>Score 84</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2023 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>A common IoT architecture has four layers: perception/device layer, network layer, processing/middleware layer, and application layer.</li><li>Perception layer contains sensors, actuators, RFID, cameras, and embedded devices that collect data from the environment.</li><li>Network layer transfers data using Wi-Fi, Bluetooth, Zigbee, LoRa, cellular, Ethernet, MQTT, CoAP, IPv4, or IPv6.</li><li>Processing layer stores, filters, analyzes, and manages data using gateways, edge/fog nodes, cloud servers, databases, and analytics engines.</li><li>Application layer provides user services such as smart home, healthcare, agriculture, retail, industry, and smart city dashboards.</li><li>Security and device management are required across all layers.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain any one algorithm for iot security. security algorithm any iot one secur" data-cat="Security">
-          <div class="rank">8</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain any one algorithm for IOT security.</h2>
-              <div class="badges"><span>3x repeated</span><span>Security</span><span>Score 84</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>One commonly used security algorithm is AES, Advanced Encryption Standard.</li><li>AES is a symmetric key encryption algorithm, meaning the same secret key is used for encryption and decryption.</li><li>It works on fixed-size blocks of 128 bits and supports key sizes of 128, 192, or 256 bits.</li><li>AES operations include SubBytes, ShiftRows, MixColumns, and AddRoundKey rounds.</li><li>In IoT, AES is used to protect sensor data, stored credentials, and communication payloads because it is fast and widely supported.</li><li>For safe use, AES keys must be generated securely, stored safely, and exchanged using a secure mechanism.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain limitation of cloud computing. cloud/fog cloud comput limitation" data-cat="Cloud/Fog">
-          <div class="rank">9</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain limitation of cloud computing.</h2>
-              <div class="badges"><span>3x repeated</span><span>Cloud/Fog</span><span>Score 84</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Cloud computing depends on internet connectivity, so service may be affected by network failure or poor bandwidth.</li><li>Latency can be high for real-time IoT applications if every decision is sent to a remote cloud.</li><li>Security and privacy are major concerns because data is stored and processed by third-party infrastructure.</li><li>Vendor lock-in can occur when an application depends heavily on one cloud provider&#x27;s services.</li><li>Other limitations include downtime risk, compliance issues, data transfer cost, limited control over infrastructure, and performance variation.</li><li>Fog and edge computing reduce some limitations by processing urgent data near IoT devices.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="write raspberry pi code to blink led on and off . hardware blink code led off pi raspberry" data-cat="Hardware">
-          <div class="rank">10</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Write Raspberry Pi code to blink LED ON and OFF .</h2>
-              <div class="badges"><span>3x repeated</span><span>Hardware</span><span>Score 76</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Connect the LED anode to a GPIO pin through a resistor and connect the cathode to GND.</li><li>Example Python code:</li><pre>import RPi.GPIO as GPIO
-import time
+    <div class="container">
+        <header>
+            <h1>GTU System Software (3160715)</h1>
+            <p class="subtitle">Comprehensive Analysis of Most Repeated Questions across 8 Exam Papers</p>
+        </header>
 
-LED = 18
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED, GPIO.OUT)
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterQuestions(0)">All Questions</button>
+            <button class="filter-btn" onclick="filterQuestions(5)">5+ Times</button>
+            <button class="filter-btn" onclick="filterQuestions(4)">4 Times</button>
+            <button class="filter-btn" onclick="filterQuestions(3)">3 Times</button>
+            <button class="filter-btn" onclick="filterQuestions(2)">2 Times</button>
+            <button class="filter-btn" onclick="filterQuestions(1)">1 Time</button>
+        </div>
 
-try:
-    while True:
-        GPIO.output(LED, GPIO.HIGH)
-        time.sleep(1)
-        GPIO.output(LED, GPIO.LOW)
-        time.sleep(1)
-finally:
-    GPIO.cleanup()</pre><li>The GPIO pin is configured as output. HIGH turns the LED ON and LOW turns it OFF.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="draw and explain ipv6 header. protocols header ipv6" data-cat="Protocols">
-          <div class="rank">11</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Draw and explain IPv6 Header.</h2>
-              <div class="badges"><span>3x repeated</span><span>Protocols</span><span>Score 74</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IPv6 uses a fixed 40-byte base header, which is simpler than the IPv4 header.</li><li>Main fields: Version, Traffic Class, Flow Label, Payload Length, Next Header, Hop Limit, Source Address, and Destination Address.</li><li>Version is 6 for IPv6. Traffic Class is used for priority/QoS. Flow Label identifies packets belonging to the same flow.</li><li>Payload Length gives the size of data after the header. Next Header identifies the next protocol or extension header.</li><li>Hop Limit prevents infinite routing loops. Source and Destination addresses are 128-bit IPv6 addresses.</li><li>IPv6 provides a larger address space, better routing support, autoconfiguration, and improved extension header design.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain challenges of iot. basics challeng iot" data-cat="Basics">
-          <div class="rank">12</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain challenges of IoT.</h2>
-              <div class="badges"><span>3x repeated</span><span>Basics</span><span>Score 74</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2022 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT challenges include security, privacy, interoperability, scalability, power consumption, data management, reliability, and cost.</li><li>Different devices and protocols make interoperability difficult.</li><li>Large-scale IoT systems generate huge data, requiring storage, analytics, and filtering.</li><li>Many devices run on battery, so energy-efficient hardware and communication are important.</li><li>Network reliability is critical because IoT systems often monitor or control real-world processes.</li><li>Other issues include legal compliance, firmware updates, device lifecycle management, and lack of common standards.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain characteristics of the iot. basics characteristic iot" data-cat="Basics">
-          <div class="rank">13</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain characteristics of the IoT.</h2>
-              <div class="badges"><span>3x repeated</span><span>Basics</span><span>Score 74</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Important characteristics of IoT are connectivity, sensing, intelligence, dynamic nature, scalability, heterogeneity, and security.</li><li>Connectivity allows devices to communicate with each other, gateways, cloud, and users.</li><li>Sensing allows collection of real-world data such as temperature, motion, pressure, location, or humidity.</li><li>Intelligence is added through processing, rules, analytics, and AI/ML.</li><li>IoT systems are dynamic because devices may join, leave, move, or change state.</li><li>Scalability and heterogeneity are important because IoT includes many device types, networks, and platforms.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain in brief future factory concepts cloud/fog analytic cloud concept factory future" data-cat="Cloud/Fog">
-          <div class="rank">14</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain in brief future factory concepts</h2>
-              <div class="badges"><span>3x repeated</span><span>Cloud/Fog</span><span>Score 74</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2023 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Future factory is a smart manufacturing concept based on IoT, automation, cloud/fog computing, robotics, AI, and cyber physical systems.</li><li>Machines, sensors, products, and workers are connected to collect real-time production data.</li><li>IoT enables predictive maintenance, quality monitoring, inventory tracking, energy management, and automated decision making.</li><li>Cyber physical systems connect physical machines with digital models and control systems.</li><li>Benefits include higher productivity, reduced downtime, flexible production, better quality, and data-driven planning.</li><li>It is closely related to Industry 4.0 and smart manufacturing.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain iot and cyber physical system. basics cyber iot physical system" data-cat="Basics">
-          <div class="rank">15</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain IoT and cyber physical system.</h2>
-              <div class="badges"><span>3x repeated</span><span>Basics</span><span>Score 74</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - S2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT is a network of physical objects embedded with sensors, actuators, software, and connectivity to collect and exchange data.</li><li>A Cyber Physical System, CPS, tightly integrates computation, networking, and physical processes.</li><li>In CPS, sensors observe the physical world, software analyzes data, and actuators control the physical process.</li><li>IoT focuses on connectivity and data exchange, while CPS focuses more on feedback, control, and interaction between digital and physical systems.</li><li>Examples include smart grids, autonomous vehicles, industrial automation, medical monitoring, and smart traffic systems.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="draw the block diagram of raspberry pi and explain components of raspberry pi in brief. hardware block component pi raspberry" data-cat="Hardware">
-          <div class="rank">16</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Draw the block diagram of Raspberry Pi and explain components of Raspberry Pi in brief.</h2>
-              <div class="badges"><span>2x repeated</span><span>Hardware</span><span>Score 68</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2025 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Raspberry Pi is a single-board computer used for embedded, IoT, robotics, and educational projects.</li><li>Main components include Broadcom SoC, ARM CPU, GPU, RAM, GPIO header, USB ports, HDMI, Ethernet/Wi-Fi/Bluetooth, microSD card slot, power input, camera interface, and display interface.</li><li>The CPU executes programs, while RAM stores temporary data and the microSD card stores the operating system.</li><li>GPIO pins allow interfacing with LEDs, sensors, motors, relays, and other external modules.</li><li>Communication interfaces include UART, SPI, I2C, USB, Ethernet, Wi-Fi, and Bluetooth.</li><li>Raspberry Pi can run Linux and high-level languages like Python, making it suitable for IoT gateways and smart applications.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="list and explain cloud deployment models. cloud/fog cloud deployment model" data-cat="Cloud/Fog">
-          <div class="rank">17</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>List and explain cloud deployment models.</h2>
-              <div class="badges"><span>2x repeated</span><span>Cloud/Fog</span><span>Score 68</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - W2023 [3160716] [GTU Ranker].pdf, IoTA - W2025 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Public cloud: services are provided over the internet to many users by providers such as AWS, Azure, or Google Cloud.</li><li>Private cloud: cloud infrastructure is used by one organization, giving more control, privacy, and customization.</li><li>Hybrid cloud: combination of public and private cloud, allowing sensitive data to remain private while scalable workloads use public cloud.</li><li>Community cloud: shared by organizations with common requirements such as government, healthcare, or education.</li><li>In IoT, deployment model selection depends on security, cost, scalability, compliance, and performance requirements.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="what is arm? explain special feature of arm processor. hardware arm feature processor special" data-cat="Hardware">
-          <div class="rank">18</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>What is ARM? Explain special feature of ARM processor.</h2>
-              <div class="badges"><span>3x repeated</span><span>Hardware</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2023 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf, IoTA - W2023 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>ARM stands for Advanced RISC Machine. It is a family of processors based on Reduced Instruction Set Computer architecture.</li><li>ARM processors are widely used in IoT, mobile phones, embedded systems, and low-power devices.</li><li>Special features include low power consumption, high performance per watt, small size, pipelining, load-store architecture, and large register set.</li><li>ARM supports different operating modes, exceptions, interrupts, and efficient instruction execution.</li><li>Many ARM processors also support Thumb instruction set, memory protection, and hardware debugging.</li><li>Its low energy requirement makes it suitable for battery-powered IoT devices.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="compare iot and cloud. cloud/fog cloud iot" data-cat="Cloud/Fog">
-          <div class="rank">19</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Compare IoT and cloud.</h2>
-              <div class="badges"><span>2x repeated</span><span>Cloud/Fog</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2022 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT connects physical devices, sensors, and actuators to collect and exchange real-world data.</li><li>Cloud computing provides remote storage, processing, analytics, and services over the internet.</li><li>IoT is the data generation and control side, while cloud is often the storage and processing side.</li><li>IoT devices are usually resource constrained; cloud servers have high computation and storage capacity.</li><li>IoT needs real-time sensing and actuation; cloud supports large-scale analytics, dashboards, backups, and remote access.</li><li>Together, IoT and cloud enable smart applications such as healthcare monitoring, smart agriculture, and industrial automation.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="draw and explain architecture of iot security security architect iot secur" data-cat="Security">
-          <div class="rank">20</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Draw and explain architecture of IOT security</h2>
-              <div class="badges"><span>2x repeated</span><span>Security</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT security architecture protects the device layer, communication layer, cloud/platform layer, and application layer.</li><li>Device security includes secure boot, hardware identity, trusted firmware, local data protection, and physical tamper resistance.</li><li>Communication security includes encryption, authentication, certificates, VPN, TLS/DTLS, and secure routing.</li><li>Platform security includes access control, API security, database protection, logging, monitoring, and patch management.</li><li>Application security includes user authentication, authorization, input validation, privacy controls, and secure dashboards.</li><li>A complete architecture also includes device provisioning, key management, OTA updates, audit logs, and incident response.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain interfacing of led with raspberry pi. hardware interfac led pi raspberry" data-cat="Hardware">
-          <div class="rank">21</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain interfacing of LED with Raspberry Pi.</h2>
-              <div class="badges"><span>2x repeated</span><span>Hardware</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>LED interfacing connects an LED to a Raspberry Pi GPIO pin so that software can turn it ON or OFF.</li><li>Connect GPIO pin to a current-limiting resistor, resistor to LED anode, and LED cathode to GND.</li><li>Configure the selected GPIO pin as output using a library such as RPi.GPIO or gpiozero.</li><li>When the GPIO output is HIGH, current flows and the LED glows. When it is LOW, the LED turns OFF.</li><li>A resistor is necessary to protect the LED and Raspberry Pi GPIO pin from excessive current.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain pinmode(), digitalread() and digitalwrite () functions of arduino hardware arduino digitalread digitalwrite function pinmode" data-cat="Hardware">
-          <div class="rank">22</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain pinMode(), digitalRead() and digitalWrite () functions of Arduino</h2>
-              <div class="badges"><span>2x repeated</span><span>Hardware</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>pinMode(pin, mode) configures a pin as INPUT, OUTPUT, or INPUT_PULLUP.</li><li>digitalWrite(pin, value) writes HIGH or LOW to a digital output pin.</li><li>digitalRead(pin) reads the digital state of an input pin and returns HIGH or LOW.</li><li>Example: pinMode(13, OUTPUT); digitalWrite(13, HIGH); turns pin 13 ON.</li><li>These functions are basic Arduino I/O functions used to interface LEDs, switches, relays, and digital sensors.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="explain raspberry pi. hardware pi raspberry" data-cat="Hardware">
-          <div class="rank">23</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Explain Raspberry Pi.</h2>
-              <div class="badges"><span>2x repeated</span><span>Hardware</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Raspberry Pi is a low-cost, credit-card-sized single-board computer.</li><li>It has CPU, RAM, GPU, USB, HDMI, GPIO pins, storage through microSD card, and network interfaces depending on the model.</li><li>It can run Linux-based operating systems and supports programming languages such as Python, C, Java, and Node.js.</li><li>GPIO pins allow it to interface with sensors, actuators, motors, LEDs, and communication modules.</li><li>In IoT, Raspberry Pi is used as a gateway, controller, data logger, camera system, and edge computing device.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="list and explain cloud components. cloud/fog cloud component" data-cat="Cloud/Fog">
-          <div class="rank">24</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>List and explain cloud components.</h2>
-              <div class="badges"><span>2x repeated</span><span>Cloud/Fog</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Cloud components include client infrastructure, application, service, runtime cloud, storage, infrastructure, management, and security.</li><li>Client infrastructure is the user side interface such as browser, mobile app, or IoT dashboard.</li><li>Application and services provide business logic, APIs, analytics, and user functions.</li><li>Runtime cloud provides the execution environment for applications.</li><li>Storage stores files, databases, logs, sensor data, and backups.</li><li>Infrastructure includes servers, virtual machines, containers, networking, and data centers.</li><li>Management and security handle monitoring, billing, access control, encryption, and compliance.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="list out types of iot protocols and explain any one in brief. protocols any iot one out protocol" data-cat="Protocols">
-          <div class="rank">25</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>List out types of IOT protocols and explain any one in brief.</h2>
-              <div class="badges"><span>2x repeated</span><span>Protocols</span><span>Score 66</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT protocols can be grouped as connectivity protocols, communication/application protocols, network protocols, and security protocols.</li><li>Examples: Wi-Fi, Bluetooth, Zigbee, LoRaWAN, RFID, NFC, MQTT, CoAP, HTTP, AMQP, IPv6, 6LoWPAN, TLS, and DTLS.</li><li>MQTT is a lightweight publish-subscribe protocol commonly used in IoT.</li><li>It uses a broker between publishers and subscribers. Devices publish messages to topics, and subscribers receive messages from topics.</li><li>MQTT is suitable for low-bandwidth and unreliable networks because it has low overhead and supports different QoS levels.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="give difference between ipv4 and ipv6 transport protocol. protocols difference ipv4 ipv6 protocol transport" data-cat="Protocols">
-          <div class="rank">26</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Give difference between IPV4 and IPV6 transport protocol.</h2>
-              <div class="badges"><span>2x repeated</span><span>Protocols</span><span>Score 58</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - W2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IPv4 uses 32-bit addresses, while IPv6 uses 128-bit addresses.</li><li>IPv4 address space is limited; IPv6 provides a very large address space suitable for IoT growth.</li><li>IPv4 header is variable length, while IPv6 base header is fixed 40 bytes.</li><li>IPv4 supports broadcast; IPv6 uses multicast and anycast instead of broadcast.</li><li>IPv6 supports stateless address autoconfiguration and better extension header design.</li><li>IPv4 commonly uses NAT because addresses are limited; IPv6 reduces the need for NAT.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="what risks do insecure iot devices bring to privacy and security? security bring devic do insecure iot privaci risk secur" data-cat="Security">
-          <div class="rank">27</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>What risks do insecure IoT devices bring to privacy and security?</h2>
-              <div class="badges"><span>2x repeated</span><span>Security</span><span>Score 58</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2021 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>Insecure IoT devices can leak sensitive data such as location, health information, video, audio, habits, and personal identity.</li><li>Attackers may control devices remotely, modify sensor readings, disable services, or use devices as part of botnets.</li><li>Weak devices can become entry points into home, industrial, or enterprise networks.</li><li>Security risks include data theft, unauthorized access, denial of service, device hijacking, firmware tampering, and physical safety hazards.</li><li>Privacy protection requires encryption, strong authentication, data minimization, access control, consent, secure updates, and monitoring.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="write raspberry pi code to change the brightness of led. hardware brightnes change code led pi raspberry" data-cat="Hardware">
-          <div class="rank">28</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Write Raspberry Pi code to change the brightness of LED.</h2>
-              <div class="badges"><span>2x repeated</span><span>Hardware</span><span>Score 58</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2022 [3160716] [GTU Ranker].pdf, IoTA - W2024 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>LED brightness can be controlled using PWM, Pulse Width Modulation.</li><li>Example Python code:</li><pre>import RPi.GPIO as GPIO
-import time
+        <div class="questions-grid" id="questionsContainer">
+            <!-- Content will be injected by JavaScript -->
+        </div>
+    </div>
 
-LED = 18
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED, GPIO.OUT)
-pwm = GPIO.PWM(LED, 100)
-pwm.start(0)
+    <script>
+        const questionsData = [
+            { text: "Explain assembler directives (ORIGIN, EQU, LTORG, START, END) with suitable examples.", freq: 6, marks: "3, 4, 7" },
+            { text: "Eliminate left recursion from the given grammar. (Various examples)", freq: 5, marks: "3, 4" },
+            { text: "Explain pure and impure interpreters.", freq: 5, marks: "4, 7" },
+            { text: "Construct LL(1) parsing table for the given grammar.", freq: 4, marks: "4, 7" },
+            { text: "Describe following data structures: OPTAB, SYMTAB, LITTAB and POOLTAB.", freq: 4, marks: "4, 7" },
+            { text: "List and explain all the tables used in macro preprocessor (MNT, KPDTAB, SSTAB, EVTAB, MDT).", freq: 4, marks: "4, 7" },
+            { text: "Differentiate between linker and loader.", freq: 4, marks: "3, 4" },
+            { text: "Demonstrate the use of AIF and AGO / expansion time statements.", freq: 4, marks: "3, 7" },
+            { text: "Explain self-relocating program.", freq: 4, marks: "4, 7" },
+            { text: "List various phases of Language Processor / Compiler. Explain each phase in detail.", freq: 4, marks: "7" },
+            { text: "Compare variant I and variant II of intermediate code representation.", freq: 3, marks: "7" },
+            { text: "Compare and contrast the properties of macros and subroutines.", freq: 3, marks: "3, 7" },
+            { text: "What is program relocation? How it is performed by linker?", freq: 3, marks: "4, 7" },
+            { text: "Explain compile-and-go loaders in brief.", freq: 3, marks: "3, 4" },
+            { text: "What is overlay? Explain the linking of overlay structured program.", freq: 3, marks: "7" },
+            { text: "What is Symbol table? Explain how one can organize Symbol table using Linear Data Structure?", freq: 3, marks: "7" },
+            { text: "Show the difference between positional parameter and keyword parameter in macro.", freq: 3, marks: "4" },
+            { text: "Explain recursive descendent parsing algorithm.", freq: 2, marks: "7" },
+            { text: "What is optimizing transformation? Discuss various optimizing transformations.", freq: 2, marks: "7" },
+            { text: "Explain the user-centric view and system-centric view of system software.", freq: 2, marks: "3, 4" },
+            { text: "Differentiate Compiler and Interpreter.", freq: 2, marks: "3, 4" },
+            { text: "Define Language Migrator, Execution gap, Semantic Gap, Specification Gap.", freq: 2, marks: "3, 4" },
+            { text: "Explain Absolute loader with suitable example.", freq: 2, marks: "3, 4" },
+            { text: "Write and explain an algorithm for first pass of the Linker program / Assembler.", freq: 2, marks: "7" },
+            { text: "Given the source program, show intermediate code and symbol table. (Numerical)", freq: 2, marks: "7" },
+            { text: "Define system software. Give difference between system software and application software.", freq: 1, marks: "3" },
+            { text: "Explain Ambiguous Grammar with example.", freq: 1, marks: "3" },
+            { text: "Discuss dead code elimination method with suitable example.", freq: 1, marks: "3" },
+            { text: "Explain JVM in detail.", freq: 1, marks: "4, 7" },
+            { text: "Define Simple Phrase and Handle. Using Handle and Simple Phrase trace the bottom up parsing algorithm.", freq: 1, marks: "7" },
+            { text: "Discuss the limitations of stack based memory allocation.", freq: 1, marks: "3" },
+            { text: "Explain classification of debuggers.", freq: 1, marks: "4" },
+            { text: "Construct optimized DFA for the given Regular Expression.", freq: 1, marks: "7" }
+        ];
 
-try:
-    while True:
-        for duty in range(0, 101, 5):
-            pwm.ChangeDutyCycle(duty)
-            time.sleep(0.1)
-        for duty in range(100, -1, -5):
-            pwm.ChangeDutyCycle(duty)
-            time.sleep(0.1)
-finally:
-    pwm.stop()
-    GPIO.cleanup()</pre><li>Changing duty cycle changes the average voltage across the LED, so brightness changes.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="compare ipv4 and ipv6 in brief. protocols ipv4 ipv6" data-cat="Protocols">
-          <div class="rank">29</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Compare IPv4 and IPv6 in brief.</h2>
-              <div class="badges"><span>2x repeated</span><span>Protocols</span><span>Score 56</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2023 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IPv4 uses 32-bit addressing and is written in dotted decimal notation, for example 192.168.1.1.</li><li>IPv6 uses 128-bit addressing and is written in hexadecimal notation separated by colons.</li><li>IPv4 has a smaller address space, while IPv6 supports a huge number of devices.</li><li>IPv4 header is more complex and variable in size. IPv6 has a simpler fixed base header.</li><li>IPv6 supports autoconfiguration, better multicast support, and improved routing scalability.</li><li>IPv6 is more suitable for large IoT networks because it can provide unique addresses to many devices.</li></ul>
-            </details>
-          </div>
-        </article>
-        
-        <article class="qa" data-search="discuss various application of iot. applications applic iot" data-cat="Applications">
-          <div class="rank">30</div>
-          <div class="content">
-            <div class="qtop">
-              <h2>Discuss various application of IoT.</h2>
-              <div class="badges"><span>2x repeated</span><span>Applications</span><span>Score 56</span></div>
-            </div>
-            <p class="meta">Seen in: IoTA - S2024 [3160716] [GTU Ranker].pdf, IoTA - W2022 [3160716] [GTU Ranker].pdf</p>
-            <details open>
-              <summary>Answer</summary>
-              <ul><li>IoT is used in smart homes for lighting, security, appliances, energy monitoring, and automation.</li><li>In healthcare, IoT supports wearable monitoring, remote patient care, smart beds, and emergency alerts.</li><li>In agriculture, IoT helps with soil monitoring, irrigation control, weather tracking, and livestock monitoring.</li><li>In industry, IoT supports predictive maintenance, asset tracking, quality control, and smart manufacturing.</li><li>Other applications include smart cities, traffic management, retail, logistics, environment monitoring, smart grids, and connected vehicles.</li></ul>
-            </details>
-          </div>
-        </article>
-        </section>
-</main>
-<script>
-const search=document.getElementById('search'), cat=document.getElementById('cat');
-function applyFilters(){const q=search.value.trim().toLowerCase();const c=cat.value;document.querySelectorAll('.qa').forEach(card=>{const okText=!q||card.dataset.search.includes(q)||card.innerText.toLowerCase().includes(q);const okCat=c==='all'||card.dataset.cat===c;card.classList.toggle('hidden',!(okText&&okCat));})}
-search.addEventListener('input',applyFilters);cat.addEventListener('change',applyFilters);
-document.getElementById('toggle').addEventListener('click',e=>{const all=[...document.querySelectorAll('details')];const open=all.some(d=>d.open);all.forEach(d=>d.open=!open);e.target.textContent=open?'Expand answers':'Collapse answers';});
-document.getElementById('print').addEventListener('click',()=>window.print());
-</script>
+        function renderQuestions(data) {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+            
+            data.forEach((q, index) => {
+                const delay = index * 0.05;
+                const freqClass = q.freq >= 5 ? 'high' : '';
+                
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.style.animationDelay = `${delay}s`;
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="badges">
+                            <span class="badge freq ${freqClass}">${q.freq} Time${q.freq > 1 ? 's' : ''}</span>
+                            <span class="badge marks">${q.marks} Marks</span>
+                        </div>
+                    </div>
+                    <div class="question-text">${q.text}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterQuestions(freq) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (freq === 0) {
+                renderQuestions(questionsData);
+            } else {
+                const filtered = questionsData.filter(q => q.freq === freq);
+                renderQuestions(filtered);
+            }
+        }
+
+        // Initial render
+        renderQuestions(questionsData);
+    </script>
 </body>
 </html>
