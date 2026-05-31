@@ -10,219 +10,165 @@
             --secondary: #10B981;
             --dark: #0F172A;
             --card-bg: rgba(30, 41, 59, 0.7);
+            --card-hover: rgba(30, 41, 59, 0.95);
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body {
             background-color: var(--dark);
             color: var(--text-main);
             line-height: 1.6;
             padding: 2rem;
             min-height: 100vh;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%);
+            background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%);
             background-attachment: fixed;
         }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; animation: fadeInDown 0.8s ease-out; }
         h1 {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 3rem; font-weight: 800;
             background: linear-gradient(135deg, #818CF8, #34D399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            letter-spacing: -0.05em;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem; letter-spacing: -0.05em;
         }
-
-        p.subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-        }
-
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
+        p.subtitle { font-size: 1.2rem; color: var(--text-muted); }
+        .filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-main);
-            padding: 0.75rem 1.5rem;
-            border-radius: 999px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main); padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px);
         }
-
         .filter-btn:hover, .filter-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-            transform: translateY(-2px);
+            background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); transform: translateY(-2px);
         }
-
-        .questions-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
+        .questions-grid { display: grid; gap: 1.5rem; }
+        
         .question-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            animation: fadeIn 0.5s ease-out backwards;
+            background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 1.5rem;
+            backdrop-filter: blur(10px); transition: all 0.3s ease; animation: fadeIn 0.5s ease-out backwards; cursor: pointer;
         }
+        .question-card:hover { border-color: rgba(99, 102, 241, 0.5); background: var(--card-hover); }
+        .question-card.active { border-color: var(--primary); background: var(--card-hover); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
 
-        .question-card:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            border-color: rgba(99, 102, 241, 0.3);
-            background: rgba(30, 41, 59, 0.9);
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; gap: 0.5rem; }
+        .badges { display: flex; gap: 0.75rem; }
+        .badge { padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+        .badge.freq { background: rgba(99, 102, 241, 0.2); color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.3); }
+        .badge.freq.high { background: rgba(239, 68, 68, 0.2); color: #F87171; border-color: rgba(239, 68, 68, 0.3); }
+        .badge.marks { background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        
+        .question-text { font-size: 1.25rem; font-weight: 600; line-height: 1.4; padding-right: 20px; position: relative; }
+        .question-text::after {
+            content: '+'; position: absolute; right: 0; top: 0; font-size: 1.5rem; color: var(--primary); transition: transform 0.3s ease;
         }
+        .question-card.active .question-text::after { transform: rotate(45deg); }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        .answer-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease; opacity: 0;
+            color: #CBD5E1; font-size: 1.05rem;
         }
+        .question-card.active .answer-content { max-height: 1000px; margin-top: 1.5rem; opacity: 1; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; overflow-y: auto;}
 
-        .badges {
-            display: flex;
-            gap: 0.75rem;
-        }
+        /* Rich Content Styling */
+        .styled-table { width: 100%; border-collapse: collapse; margin: 15px 0; border-radius: 8px; overflow: hidden; font-size: 0.95rem; }
+        .styled-table thead tr { background-color: var(--primary); color: #ffffff; text-align: left; }
+        .styled-table th, .styled-table td { padding: 12px 15px; }
+        .styled-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .styled-table tbody tr:nth-of-type(even) { background-color: rgba(255, 255, 255, 0.03); }
+        .styled-table tbody tr:last-of-type { border-bottom: 2px solid var(--primary); }
+        
+        .code-block { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; font-family: monospace; color: #34D399; overflow-x: auto; margin: 10px 0; }
+        .rich-content ul, .rich-content ol { margin-left: 20px; margin-bottom: 15px; }
+        .rich-content li { margin-bottom: 5px; }
+        .rich-content h4 { color: #818CF8; margin: 15px 0 5px; }
+        .diagram-placeholder { background: rgba(255,255,255,0.05); padding: 20px; text-align: center; font-family: monospace; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; margin: 15px 0; color: #A78BFA; }
 
-        .badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .badge.freq {
-            background: rgba(99, 102, 241, 0.2);
-            color: #818CF8;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        .badge.freq.high {
-            background: rgba(239, 68, 68, 0.2);
-            color: #F87171;
-            border-color: rgba(239, 68, 68, 0.3);
-        }
-
-        .badge.marks {
-            background: rgba(16, 185, 129, 0.2);
-            color: #34D399;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .question-text {
-            font-size: 1.25rem;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>GTU System Software (3160715)</h1>
-            <p class="subtitle">Comprehensive Analysis of Most Repeated Questions across 8 Exam Papers</p>
+            <p class="subtitle">Comprehensive Analysis & Answers for Most Repeated Questions</p>
         </header>
 
         <div class="filters">
             <button class="filter-btn active" onclick="filterQuestions(0)">All Questions</button>
-            <button class="filter-btn" onclick="filterQuestions(5)">5+ Times</button>
-            <button class="filter-btn" onclick="filterQuestions(4)">4 Times</button>
+            <button class="filter-btn" onclick="filterQuestions(4)">4+ Times</button>
             <button class="filter-btn" onclick="filterQuestions(3)">3 Times</button>
             <button class="filter-btn" onclick="filterQuestions(2)">2 Times</button>
-            <button class="filter-btn" onclick="filterQuestions(1)">1 Time</button>
         </div>
 
-        <div class="questions-grid" id="questionsContainer">
-            <!-- Content will be injected by JavaScript -->
-        </div>
+        <div class="questions-grid" id="questionsContainer"></div>
     </div>
 
     <script>
+        // We inject the JSON directly into JS
         const questionsData = [
-            { text: "Explain assembler directives (ORIGIN, EQU, LTORG, START, END) with suitable examples.", freq: 6, marks: "3, 4, 7" },
-            { text: "Eliminate left recursion from the given grammar. (Various examples)", freq: 5, marks: "3, 4" },
-            { text: "Explain pure and impure interpreters.", freq: 5, marks: "4, 7" },
-            { text: "Construct LL(1) parsing table for the given grammar.", freq: 4, marks: "4, 7" },
-            { text: "Describe following data structures: OPTAB, SYMTAB, LITTAB and POOLTAB.", freq: 4, marks: "4, 7" },
-            { text: "List and explain all the tables used in macro preprocessor (MNT, KPDTAB, SSTAB, EVTAB, MDT).", freq: 4, marks: "4, 7" },
-            { text: "Differentiate between linker and loader.", freq: 4, marks: "3, 4" },
-            { text: "Demonstrate the use of AIF and AGO / expansion time statements.", freq: 4, marks: "3, 7" },
-            { text: "Explain self-relocating program.", freq: 4, marks: "4, 7" },
-            { text: "List various phases of Language Processor / Compiler. Explain each phase in detail.", freq: 4, marks: "7" },
-            { text: "Compare variant I and variant II of intermediate code representation.", freq: 3, marks: "7" },
-            { text: "Compare and contrast the properties of macros and subroutines.", freq: 3, marks: "3, 7" },
-            { text: "What is program relocation? How it is performed by linker?", freq: 3, marks: "4, 7" },
-            { text: "Explain compile-and-go loaders in brief.", freq: 3, marks: "3, 4" },
-            { text: "What is overlay? Explain the linking of overlay structured program.", freq: 3, marks: "7" },
-            { text: "What is Symbol table? Explain how one can organize Symbol table using Linear Data Structure?", freq: 3, marks: "7" },
-            { text: "Show the difference between positional parameter and keyword parameter in macro.", freq: 3, marks: "4" },
-            { text: "Explain recursive descendent parsing algorithm.", freq: 2, marks: "7" },
-            { text: "What is optimizing transformation? Discuss various optimizing transformations.", freq: 2, marks: "7" },
-            { text: "Explain the user-centric view and system-centric view of system software.", freq: 2, marks: "3, 4" },
-            { text: "Differentiate Compiler and Interpreter.", freq: 2, marks: "3, 4" },
-            { text: "Define Language Migrator, Execution gap, Semantic Gap, Specification Gap.", freq: 2, marks: "3, 4" },
-            { text: "Explain Absolute loader with suitable example.", freq: 2, marks: "3, 4" },
-            { text: "Write and explain an algorithm for first pass of the Linker program / Assembler.", freq: 2, marks: "7" },
-            { text: "Given the source program, show intermediate code and symbol table. (Numerical)", freq: 2, marks: "7" },
-            { text: "Define system software. Give difference between system software and application software.", freq: 1, marks: "3" },
-            { text: "Explain Ambiguous Grammar with example.", freq: 1, marks: "3" },
-            { text: "Discuss dead code elimination method with suitable example.", freq: 1, marks: "3" },
-            { text: "Explain JVM in detail.", freq: 1, marks: "4, 7" },
-            { text: "Define Simple Phrase and Handle. Using Handle and Simple Phrase trace the bottom up parsing algorithm.", freq: 1, marks: "7" },
-            { text: "Discuss the limitations of stack based memory allocation.", freq: 1, marks: "3" },
-            { text: "Explain classification of debuggers.", freq: 1, marks: "4" },
-            { text: "Construct optimized DFA for the given Regular Expression.", freq: 1, marks: "7" }
-        ];
+    {
+        "freq": 6,
+        "marks": "3, 4, 7",
+        "text": "Explain assembler directives (ORIGIN, EQU, LTORG, START, END) with suitable examples.",
+        "answer": "<p>Assembler directives are commands to the assembler that direct it to perform specific operations during the assembly process. They do not produce any machine code themselves.</p><div class='rich-content'><ul><li><strong>START:</strong> Specifies the starting execution address of the program. <code>START 200</code></li><li><strong>END:</strong> Indicates the end of the source program. Assembler stops processing here. <code>END</code></li><li><strong>ORIGIN:</strong> Changes the location counter (LC) to a specific value. <code>ORIGIN 500</code></li><li><strong>EQU:</strong> Defines a symbol with a specific value or another symbol. <code>MAX EQU 100</code></li><li><strong>LTORG:</strong> Assigns memory locations to literals currently present in the literal pool. <code>LTORG</code></li></ul></div>"
+    },
+    {
+        "freq": 5,
+        "marks": "3, 4",
+        "text": "Eliminate left recursion from the given grammar. (Various examples)",
+        "answer": "<p>Left recursion occurs when a non-terminal can derive a string that begins with itself (e.g., A &rarr; A&alpha; | &beta;). This can cause infinite loops in top-down parsers.</p><div class='rich-content'><h4>Algorithm to Eliminate Immediate Left Recursion:</h4><p>Replace <code>A &rarr; A&alpha; | &beta;</code> with:</p><div class='code-block'>A  &rarr; &beta;A'<br>A' &rarr; &alpha;A' | &epsilon;</div><h4>Example:</h4><p>Original: <code>E &rarr; E + T | T</code></p><p>After Elimination:</p><div class='code-block'>E  &rarr; TE'<br>E' &rarr; +TE' | &epsilon;</div></div>"
+    },
+    {
+        "freq": 5,
+        "marks": "4, 7",
+        "text": "Explain pure and impure interpreters.",
+        "answer": "<p>Interpreters can be broadly classified based on whether they perform any translation prior to execution.</p><table class='styled-table'><thead><tr><th>Feature</th><th>Pure Interpreter</th><th>Impure Interpreter</th></tr></thead><tbody><tr><td><strong>Pre-processing</strong></td><td>No translation or pre-processing is done.</td><td>Translates source code into an intermediate representation (IR).</td></tr><tr><td><strong>Execution</strong></td><td>Source code is directly interpreted line by line.</td><td>The generated IR is interpreted.</td></tr><tr><td><strong>Speed</strong></td><td>Very slow execution due to repeated syntax checking.</td><td>Faster execution since syntax analysis is done once.</td></tr><tr><td><strong>Examples</strong></td><td>Early LISP interpreters, shell scripts.</td><td>Java (JVM), Python (PVM).</td></tr></tbody></table>"
+    },
+    {
+        "freq": 4,
+        "marks": "4, 7",
+        "text": "Construct LL(1) parsing table for the given grammar.",
+        "answer": "<p>To construct an LL(1) parsing table, you need to compute <strong>FIRST</strong> and <strong>FOLLOW</strong> sets.</p><div class='rich-content'><ol><li><strong>FIRST(&alpha;):</strong> Set of terminals that begin strings derived from &alpha;.</li><li><strong>FOLLOW(A):</strong> Set of terminals that can appear immediately to the right of A in some sentential form.</li></ol><h4>Rules for Table Construction:</h4><ul><li>For each production <code>A &rarr; &alpha;</code>, for each terminal <em>a</em> in FIRST(&alpha;), add <code>A &rarr; &alpha;</code> to <code>M[A, a]</code>.</li><li>If &epsilon; is in FIRST(&alpha;), for each terminal <em>b</em> in FOLLOW(A), add <code>A &rarr; &alpha;</code> to <code>M[A, b]</code>.</li><li>If a cell has multiple entries, the grammar is NOT LL(1).</li></ul></div>"
+    },
+    {
+        "freq": 4,
+        "marks": "4, 7",
+        "text": "Describe following data structures: OPTAB, SYMTAB, LITTAB and POOLTAB.",
+        "answer": "<p>These are critical data structures used by an Assembler during translation:</p><div class='rich-content'><ul><li><strong>OPTAB (Operation Code Table):</strong> A static table containing mnemonics, machine codes, and instruction lengths. Looked up to translate opcodes.</li><li><strong>SYMTAB (Symbol Table):</strong> Dynamic table that stores symbols (labels, variables), their calculated memory addresses, and length.</li><li><strong>LITTAB (Literal Table):</strong> Dynamic table storing literals used in the program along with their assigned addresses (resolved during LTORG or END).</li><li><strong>POOLTAB (Pool Table):</strong> Stores pointers to the start of each literal pool in the LITTAB. Essential for handling multiple LTORG statements.</li></ul></div>"
+    },
+    {
+        "freq": 4,
+        "marks": "4, 7",
+        "text": "List and explain all the tables used in macro preprocessor (MNT, KPDTAB, SSTAB, EVTAB, MDT).",
+        "answer": "<p>The Macro Preprocessor uses these tables to handle definition and expansion:</p><table class='styled-table'><thead><tr><th>Table</th><th>Description</th></tr></thead><tbody><tr><td><strong>MNT</strong> (Macro Name Table)</td><td>Stores Macro Name, number of positional/keyword parameters, and pointer to MDT.</td></tr><tr><td><strong>MDT</strong> (Macro Definition Table)</td><td>Stores the actual body (statements) of the macro.</td></tr><tr><td><strong>KPDTAB</strong> (Keyword Parameter Default Table)</td><td>Stores keyword parameter names and their default values.</td></tr><tr><td><strong>EVTAB</strong> (Expansion Time Variable Table)</td><td>Stores local and global expansion time variables (AIF, AGO targets).</td></tr><tr><td><strong>SSTAB</strong> (Sequencing Symbol Table)</td><td>Stores labels used inside macros for conditional expansion.</td></tr></tbody></table>"
+    },
+    {
+        "freq": 4,
+        "marks": "3, 4",
+        "text": "Differentiate between linker and loader.",
+        "answer": "<table class='styled-table'><thead><tr><th>Feature</th><th>Linker</th><th>Loader</th></tr></thead><tbody><tr><td><strong>Main Function</strong></td><td>Combines multiple object files and libraries into a single executable.</td><td>Loads the executable file into main memory for execution.</td></tr><tr><td><strong>Input</strong></td><td>Object code files, library files.</td><td>Executable module (output of linker).</td></tr><tr><td><strong>Output</strong></td><td>Executable program.</td><td>Running process in RAM.</td></tr><tr><td><strong>Address Space</strong></td><td>Performs relocation and resolves external references.</td><td>Allocates physical memory to the program.</td></tr></tbody></table>"
+    },
+    {
+        "freq": 4,
+        "marks": "3, 7",
+        "text": "Demonstrate the use of AIF and AGO / expansion time statements.",
+        "answer": "<p>AIF and AGO are expansion-time control statements used in macro processing for conditional expansion and loops.</p><div class='rich-content'><ul><li><strong>AGO (Unconditional Jump):</strong> Similar to GOTO. It directs the macro processor to skip sequentially and jump to a sequencing symbol. <br><code>AGO .NEXT</code></li><li><strong>AIF (Conditional Jump):</strong> Jumps to a sequencing symbol only if a given condition is true. <br><code>AIF (&amp;N EQ 0) .END</code></li></ul><h4>Example:</h4><div class='code-block'>MACRO<br>POWER &amp;X, &amp;Y<br>&amp;Z SET 1<br>.LOOP AIF (&amp;Z GT &amp;Y) .DONE<br>      MULT REG, &amp;X<br>&amp;Z SET &amp;Z + 1<br>      AGO .LOOP<br>.DONE MEND</div></div>"
+    },
+    {
+        "freq": 4,
+        "marks": "4, 7",
+        "text": "Explain self-relocating program.",
+        "answer": "<p>A self-relocating program is a program that performs its own relocation when loaded into memory, rather than relying on a relocating loader.</p><div class='rich-content'><h4>Key Features:</h4><ul><li>It contains a built-in <strong>relocator logic</strong>.</li><li>When execution starts, it determines its current load address in RAM.</li><li>It adjusts all address-dependent instructions (using relocation bits or tables) based on the actual load address vs. the assembled origin.</li><li>Useful in embedded systems or OS kernels where a standard relocating loader is not available in the environment.</li></ul></div>"
+    },
+    {
+        "freq": 4,
+        "marks": "7",
+        "text": "List various phases of Language Processor / Compiler. Explain each phase in detail.",
+        "answer": "<p>A modern compiler operates in several phases, grouped into <strong>Analysis</strong> and <strong>Synthesis</strong>.</p><div class='diagram-placeholder'>[Source Code] &rarr; Lexical Analysis &rarr; Syntax Analysis &rarr; Semantic Analysis &rarr; IR Generation &rarr; Code Optimization &rarr; Target Code Generation &rarr; [Machine Code]</div><div class='rich-content'><ul><li><strong>Lexical Analysis (Scanner):</strong> Reads characters and groups them into meaningful sequences called tokens.</li><li><strong>Syntax Analysis (Parser):</strong> Uses tokens to construct a parse tree, verifying grammatical correctness.</li><li><strong>Semantic Analysis:</strong> Checks meaning (e.g., type checking, variable declaration).</li><li><strong>Intermediate Code Generation:</strong> Generates platform-independent IR (like 3-address code).</li><li><strong>Code Optimization:</strong> Improves IR to reduce time/space (e.g., dead code elimination).</li><li><strong>Target Code Generation:</strong> Converts optimized IR into specific machine/assembly code.</li></ul></div>"
+    }
+];
 
         function renderQuestions(data) {
             const container = document.getElementById('questionsContainer');
@@ -235,6 +181,9 @@
                 const card = document.createElement('div');
                 card.className = 'question-card';
                 card.style.animationDelay = `${delay}s`;
+                card.onclick = function() {
+                    this.classList.toggle('active');
+                };
                 
                 card.innerHTML = `
                     <div class="card-header">
@@ -244,24 +193,27 @@
                         </div>
                     </div>
                     <div class="question-text">${q.text}</div>
+                    <div class="answer-content">
+                        ${q.answer}
+                    </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        function filterQuestions(freq) {
+        function filterQuestions(minFreq) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
-            if (freq === 0) {
+            if (minFreq === 0) {
                 renderQuestions(questionsData);
+            } else if(minFreq === 4) {
+                renderQuestions(questionsData.filter(q => q.freq >= 4));
             } else {
-                const filtered = questionsData.filter(q => q.freq === freq);
-                renderQuestions(filtered);
+                renderQuestions(questionsData.filter(q => q.freq === minFreq));
             }
         }
 
-        // Initial render
         renderQuestions(questionsData);
     </script>
 </body>
