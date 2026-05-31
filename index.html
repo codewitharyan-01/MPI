@@ -3,118 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GTU System Software - Ultimate Study Guide</title>
+    <title>GTU System Software - Interactive Study App</title>
     <style>
         :root {
-            --primary: #6366F1;
+            /* Minimalist Light Theme */
+            --bg-body: #F9FAFB;
+            --bg-card: #FFFFFF;
+            --text-main: #111827;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+            --primary: #2563EB;
+            --primary-hover: #1D4ED8;
             --secondary: #10B981;
-            --dark: #0F172A;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --card-hover: rgba(30, 41, 59, 0.95);
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
+            --accent: #F59E0B;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        
         body {
-            background-color: var(--dark);
+            background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 2rem;
+            padding-top: 4rem;
             min-height: 100vh;
-            background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%);
-            background-attachment: fixed;
         }
-        .container { max-width: 1000px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 3rem; animation: fadeInDown 0.8s ease-out; }
-        h1 {
-            font-size: 3rem; font-weight: 800;
-            background: linear-gradient(135deg, #818CF8, #34D399);
-            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem; letter-spacing: -0.05em;
-        }
-        p.subtitle { font-size: 1.2rem; color: var(--text-muted); }
-        .filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-main); padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px);
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); transform: translateY(-2px);
-        }
-        .questions-grid { display: grid; gap: 1.5rem; }
         
-        .question-card {
-            background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 1.5rem;
-            backdrop-filter: blur(10px); transition: all 0.3s ease; animation: fadeIn 0.5s ease-out backwards; cursor: pointer;
-        }
-        .question-card:hover { border-color: rgba(99, 102, 241, 0.5); background: var(--card-hover); }
-        .question-card.active { border-color: var(--primary); background: var(--card-hover); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
-
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; gap: 0.5rem; }
-        .badges { display: flex; gap: 0.75rem; }
-        .badge { padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
-        .badge.freq { background: rgba(99, 102, 241, 0.2); color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.3); }
-        .badge.freq.high { background: rgba(239, 68, 68, 0.2); color: #F87171; border-color: rgba(239, 68, 68, 0.3); }
-        .badge.marks { background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
-        
-        .question-text { font-size: 1.25rem; font-weight: 600; line-height: 1.4; padding-right: 20px; position: relative; }
-        .question-text::after {
-            content: '+'; position: absolute; right: 0; top: 0; font-size: 1.5rem; color: var(--primary); transition: transform 0.3s ease;
-        }
-        .question-card.active .question-text::after { transform: rotate(45deg); }
-
-        .answer-content {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease; opacity: 0;
-            color: #CBD5E1; font-size: 1.05rem;
-        }
-        .question-card.active .answer-content { max-height: 2000px; margin-top: 1.5rem; opacity: 1; padding-top: 0.5rem; overflow-y: auto;}
-
-        /* Baby Explanation Box */
-        .baby-box {
-            background: rgba(251, 191, 36, 0.15);
-            border-left: 4px solid #F59E0B;
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #FCD34D;
+        /* Top Navigation Bar - Responsive */
+        .top-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: #FFFFFF;
+            padding: 10px 1rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-        .baby-icon { font-size: 1.5rem; }
-
-        /* Rich Content Styling */
-        .styled-table { width: 100%; border-collapse: collapse; margin: 15px 0; border-radius: 8px; overflow: hidden; font-size: 0.95rem; }
-        .styled-table thead tr { background-color: var(--primary); color: #ffffff; text-align: left; }
-        .styled-table th, .styled-table td { padding: 12px 15px; }
-        .styled-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .styled-table tbody tr:nth-of-type(even) { background-color: rgba(255, 255, 255, 0.03); }
-        .styled-table tbody tr:last-of-type { border-bottom: 2px solid var(--primary); }
         
-        .code-block { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; font-family: monospace; color: #34D399; overflow-x: auto; margin: 10px 0; }
-        .rich-content ul, .rich-content ol { margin-left: 20px; margin-bottom: 15px; }
-        .rich-content li { margin-bottom: 8px; }
-        .rich-content h4 { color: #818CF8; margin: 20px 0 10px; font-size: 1.15rem; }
-        .diagram-placeholder { background: rgba(255,255,255,0.05); padding: 20px; text-align: center; font-family: monospace; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; margin: 15px 0; color: #A78BFA; }
+        .progress-container { width: 40%; max-width: 300px; }
+        .progress-text { font-size: 0.8rem; margin-bottom: 4px; display: flex; justify-content: space-between; color: var(--text-muted); font-weight: 600;}
+        .progress-track { width: 100%; height: 6px; background: var(--border-color); border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--secondary); width: 0%; transition: width 0.5s ease; }
 
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-actions { display: flex; gap: 8px; }
+        .nav-btn {
+            background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-main);
+            padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500;
+            transition: all 0.2s; display: flex; align-items: center; gap: 5px;
+        }
+        .nav-btn:hover { background: #F3F4F6; }
+        .nav-btn.active-mode { background: #DBEAFE; color: var(--primary); border-color: #BFDBFE; }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+        header { text-align: center; margin-bottom: 2rem; }
+        h1 { font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        p.subtitle { font-size: 1.1rem; color: var(--text-muted); }
+        
+        /* Search Bar */
+        .search-container { margin-bottom: 1.5rem; }
+        .search-input {
+            width: 100%; padding: 14px 20px; font-size: 1rem;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            color: var(--text-main); border-radius: 8px; outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+
+        /* Minimalist Filters */
+        .filters-group { margin-bottom: 1.5rem; text-align: left; }
+        .filters-title { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .filter-btn {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            color: var(--text-muted); padding: 0.4rem 1rem; border-radius: 6px; font-size: 0.9rem;
+            font-weight: 500; cursor: pointer; transition: all 0.2s ease;
+        }
+        .filter-btn:hover { background: #F3F4F6; color: var(--text-main); }
+        .filter-btn.active { background: var(--text-main); color: #FFF; border-color: var(--text-main); }
+        
+        .questions-grid { display: flex; flex-direction: column; gap: 1rem; }
+        
+        /* Minimalist Card */
+        .question-card {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem;
+            transition: box-shadow 0.2s; position: relative; display: flex; flex-direction: column;
+        }
+        .question-card:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
+        
+        .card-actions { position: absolute; top: 1.25rem; right: 1.25rem; display: flex; gap: 12px; align-items: center; }
+        .star-btn { font-size: 1.4rem; color: #D1D5DB; cursor: pointer; transition: color 0.2s; user-select: none; line-height: 1; }
+        .star-btn.starred { color: var(--accent); }
+        .checkbox-container { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer; user-select: none; font-weight: 500; }
+        .checkbox-container input { width: 16px; height: 16px; cursor: pointer; accent-color: var(--primary); }
+
+        .card-header { margin-bottom: 0.75rem; width: 75%; }
+        .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; background: #F3F4F6; color: var(--text-muted); }
+        .badge.freq { color: var(--primary); background: #EFF6FF; }
+        .badge.marks { color: var(--secondary); background: #ECFDF5; }
+        
+        .question-text { font-size: 1.15rem; font-weight: 600; line-height: 1.4; color: var(--text-main); cursor: pointer; }
+        
+        .answer-content { display: none; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); color: #374151; font-size: 1rem; }
+        .answer-content.show { display: block; }
+
+        /* Flashcard Reveal Button */
+        .reveal-btn {
+            display: none; background: #F3F4F6; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; 
+            border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 1rem; width: 100%; transition: background 0.2s;
+        }
+        .reveal-btn:hover { background: #E5E7EB; }
+        
+        /* Baby Box Minimalist */
+        .baby-box {
+            background: #FFFBEB; border-left: 3px solid var(--accent); padding: 12px 16px;
+            border-radius: 4px; margin-bottom: 1rem; font-size: 0.95rem; color: #92400E; display: flex; align-items: flex-start; gap: 12px;
+        }
+        .baby-icon { font-size: 1.2rem; margin-top: 2px; }
+
+        /* Rich Content Minimalist */
+        .styled-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        .styled-table th, .styled-table td { padding: 10px; border: 1px solid var(--border-color); text-align: left; }
+        .styled-table th { background: #F9FAFB; font-weight: 600; color: var(--text-main); }
+        .code-block { background: #F3F4F6; padding: 12px; border-radius: 6px; font-family: monospace; color: #111827; overflow-x: auto; margin: 0.75rem 0; font-size: 0.9rem; border: 1px solid var(--border-color); }
+        .rich-content ul, .rich-content ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+        .rich-content h4 { color: var(--text-main); margin: 1.2rem 0 0.5rem; font-size: 1.05rem; }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .top-nav { flex-direction: column; gap: 10px; padding: 10px; }
+            .progress-container { width: 100%; max-width: none; }
+            .nav-actions { width: 100%; justify-content: space-between; }
+            .nav-btn { flex: 1; justify-content: center; font-size: 0.85rem; padding: 6px 8px; }
+            body { padding-top: 6rem; }
+            h1 { font-size: 1.8rem; }
+            .card-actions { position: static; justify-content: flex-start; margin-top: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+            .card-header { width: 100%; }
+        }
+
+        /* Print Mode CSS */
+        @media print, body.print-mode {
+            body { background: #fff; padding: 0; color: #000; }
+            .top-nav, .search-container, .filters-group { display: none !important; }
+            .question-card { border: none; border-bottom: 2px solid #eee; border-radius: 0; padding: 10px 0; box-shadow: none; page-break-inside: avoid; }
+            .answer-content { display: block !important; border: none; padding-top: 0; margin-top: 10px; }
+            .card-actions { display: none; }
+            .reveal-btn { display: none !important; }
+            .baby-box { background: #fdfdfd; color: #333; border: 1px solid #ddd; border-left: 3px solid #666; }
+            .code-block { background: #fafafa; border: 1px solid #ddd; }
+            h1 { font-size: 24px; }
+        }
     </style>
 </head>
 <body>
+
+    <div class="top-nav">
+        <div class="progress-container">
+            <div class="progress-text"><span>Study Progress</span> <span id="progressText">0/0</span></div>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-btn" id="flashcardToggle" onclick="toggleFlashcardMode()">🧠 Flashcard</button>
+            <button class="nav-btn" onclick="enablePrintMode()">🖨️ Print</button>
+        </div>
+    </div>
+
     <div class="container">
         <header>
-            <h1>GTU System Software (3160715)</h1>
-            <p class="subtitle">Ultimate Study Guide: Comprehensive Answers & ELI5 Explanations</p>
+            <h1>GTU System Software</h1>
+            <p class="subtitle">Interactive Study App</p>
         </header>
 
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterQuestions(0)">All Questions</button>
-            <button class="filter-btn" onclick="filterQuestions(4)">Highly Repeated (4+ Times)</button>
-            <button class="filter-btn" onclick="filterQuestions(3)">3 Times</button>
-            <button class="filter-btn" onclick="filterQuestions(2)">2 Times</button>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search keywords, topics, or questions..." onkeyup="handleSearch()">
+        </div>
+
+        <div class="filters-group">
+            <div class="filters-title">Topic</div>
+            <div class="filters" id="topicFilters">
+                <button class="filter-btn active topic-btn" data-topic="all" onclick="filterByTopic('all')">All</button>
+                <!-- Generated dynamically -->
+            </div>
+        </div>
+
+        <div class="filters-group">
+            <div class="filters-title">Status</div>
+            <div class="filters">
+                <button class="filter-btn active" id="btn-freq-all" onclick="filterByState('all')">All</button>
+                <button class="filter-btn" id="btn-freq-high" onclick="filterByState('high')">Important (3+)</button>
+                <button class="filter-btn" id="btn-starred" onclick="filterByState('starred')">Starred</button>
+                <button class="filter-btn" id="btn-unlearned" onclick="filterByState('unlearned')">Not Learned</button>
+            </div>
         </div>
 
         <div class="questions-grid" id="questionsContainer"></div>
@@ -123,6 +204,8 @@
     <script>
         const questionsData = [
     {
+        "id": "q1",
+        "topic": "Assemblers",
         "freq": 6,
         "marks": "3, 4, 7",
         "text": "Explain assembler directives (ORIGIN, EQU, LTORG, START, END) with suitable examples.",
@@ -130,6 +213,8 @@
         "answer": "<p>Assembler directives (also known as pseudo-ops) are commands placed in the source code that provide instructions directly to the assembler during the translation phase. Unlike machine instructions (like ADD or MOV), directives do not generate any executable machine code.</p><div class='rich-content'><h4>Common Directives:</h4><ul><li><strong>START:</strong> Specifies the starting physical or logical execution address of the program. It tells the assembler where to initialize the Location Counter (LC). <br><em>Example:</em> <code>START 200</code> (Initializes LC to 200).</li><li><strong>END:</strong> Indicates the absolute end of the source program. When the assembler encounters this, it stops processing the file and can trigger the final processing of the literal pool. <br><em>Example:</em> <code>END</code></li><li><strong>ORIGIN:</strong> Instructs the assembler to change the Location Counter (LC) to a specific value. Useful for reserving specific memory blocks. <br><em>Example:</em> <code>ORIGIN 500</code> (Next instruction will be assembled at address 500).</li><li><strong>EQU (Equate):</strong> Associates a symbolic name with a specific constant value or another symbol. It does not allocate memory. <br><em>Example:</em> <code>MAX EQU 100</code> (Replaces 'MAX' with 100 during assembly).</li><li><strong>LTORG (Literal Origin):</strong> Directs the assembler to immediately allocate memory locations for all literals used in the program up to that point. This creates a 'literal pool'. <br><em>Example:</em> <code>LTORG</code></li></ul></div>"
     },
     {
+        "id": "q2",
+        "topic": "Grammar",
         "freq": 5,
         "marks": "3, 4",
         "text": "Eliminate left recursion from the given grammar.",
@@ -137,6 +222,8 @@
         "answer": "<p>In top-down parsing (like Recursive Descent or LL parsers), left recursion is a fatal flaw. A grammar is left-recursive if a non-terminal can derive a string that begins with itself (i.e., <code>A &rarr; A&alpha;</code>). This causes the parser to enter an infinite loop.</p><div class='rich-content'><h4>General Algorithm for Elimination:</h4><p>If you have a production of the form:</p><div class='code-block'>A &rarr; A&alpha;<sub>1</sub> | A&alpha;<sub>2</sub> | ... | &beta;<sub>1</sub> | &beta;<sub>2</sub> | ...</div><p>Where &beta; does not start with A. We rewrite it by creating a new non-terminal (A') to handle the recursive tail:</p><div class='code-block'>A  &rarr; &beta;<sub>1</sub>A' | &beta;<sub>2</sub>A' | ...<br>A' &rarr; &alpha;<sub>1</sub>A' | &alpha;<sub>2</sub>A' | ... | &epsilon;</div><h4>Academic Example:</h4><p>Consider the classic arithmetic expression grammar:</p><div class='code-block'>E &rarr; E + T | T</div><p>Here, &alpha; is <code>+ T</code> and &beta; is <code>T</code>. Applying the algorithm:</p><div class='code-block'>E  &rarr; TE'<br>E' &rarr; +TE' | &epsilon;</div><p>The left recursion is entirely eliminated, transforming it into right recursion which top-down parsers handle easily.</p></div>"
     },
     {
+        "id": "q3",
+        "topic": "Compilers",
         "freq": 5,
         "marks": "4, 7",
         "text": "Explain pure and impure interpreters.",
@@ -144,6 +231,8 @@
         "answer": "<p>Interpreters execute source code directly. However, they are classified into two main types based on whether they perform any preliminary translation before execution.</p><table class='styled-table'><thead><tr><th>Feature</th><th>Pure Interpreter</th><th>Impure Interpreter</th></tr></thead><tbody><tr><td><strong>Translation Phase</strong></td><td>No translation is done. The interpreter processes the raw high-level source code directly.</td><td>Source code is first translated into an Intermediate Representation (IR), such as bytecode.</td></tr><tr><td><strong>Execution Phase</strong></td><td>Reads a statement, performs syntax analysis on it, and executes it immediately.</td><td>The interpreter (often a Virtual Machine) executes the generated IR.</td></tr><tr><td><strong>Performance (Speed)</strong></td><td>Very slow. If a statement is inside a loop, it must be syntax-checked and parsed repeatedly during every iteration.</td><td>Significantly faster. Syntax analysis is done only once during the IR generation phase.</td></tr><tr><td><strong>Memory Usage</strong></td><td>Requires less memory since no intermediate code is stored.</td><td>Requires more memory to hold both the runtime engine and the generated bytecode.</td></tr><tr><td><strong>Examples</strong></td><td>Early versions of LISP, BASIC, and simple shell scripts.</td><td>Java (JVM running Bytecode), Python (CPython compiling to .pyc), C#.</td></tr></tbody></table>"
     },
     {
+        "id": "q4",
+        "topic": "Grammar",
         "freq": 4,
         "marks": "4, 7",
         "text": "Construct LL(1) parsing table for the given grammar.",
@@ -151,6 +240,8 @@
         "answer": "<p>LL(1) parsing is a top-down, predictive parsing method. The 'L' stands for Left-to-right scanning, the second 'L' for Leftmost derivation, and '1' for using 1 lookahead token. To construct the table, we must first compute the <strong>FIRST</strong> and <strong>FOLLOW</strong> sets for the grammar.</p><div class='rich-content'><h4>Prerequisites:</h4><ol><li><strong>FIRST(&alpha;):</strong> The set of terminal symbols that begin strings derived from &alpha;. If &alpha; can derive the empty string, &epsilon; is included.</li><li><strong>FOLLOW(A):</strong> The set of terminal symbols that can appear immediately to the right of non-terminal A in a derived sentence.</li></ol><h4>Table Construction Algorithm:</h4><p>For every production rule <code>A &rarr; &alpha;</code> in the grammar:</p><ul><li>For each terminal <em>a</em> in <strong>FIRST(&alpha;)</strong>, add the rule <code>A &rarr; &alpha;</code> to the table cell <code>M[A, a]</code>.</li><li>If &epsilon; is in <strong>FIRST(&alpha;)</strong>, then for each terminal <em>b</em> in <strong>FOLLOW(A)</strong>, add the rule <code>A &rarr; &alpha;</code> to the table cell <code>M[A, b]</code>.</li><li>If &epsilon; is in FIRST(&alpha;) and EOF (usually represented as <code>$</code>) is in FOLLOW(A), add <code>A &rarr; &alpha;</code> to <code>M[A, $]</code>.</li></ul><p><em>Note:</em> If any cell in the resulting table contains more than one production rule, the grammar is <strong>ambiguous</strong> or <strong>not LL(1)</strong>.</p></div>"
     },
     {
+        "id": "q5",
+        "topic": "Assemblers",
         "freq": 4,
         "marks": "4, 7",
         "text": "Describe following data structures: OPTAB, SYMTAB, LITTAB and POOLTAB.",
@@ -158,6 +249,8 @@
         "answer": "<p>An assembler requires several structured databases to efficiently translate assembly language into machine code across its passes.</p><div class='rich-content'><ul><li><strong>OPTAB (Operation Code Table):</strong> A static, pre-defined table that contains all valid assembly mnemonics (like ADD, SUB, JMP). For each mnemonic, it stores the corresponding binary machine opcode, the instruction format, and the length (in bytes). The assembler looks up OPTAB during Pass 1 to calculate the Location Counter and Pass 2 to generate machine code.</li><li><strong>SYMTAB (Symbol Table):</strong> A dynamic table built during Pass 1. It records all user-defined symbols (like labels for loops or variable names) along with the memory address assigned to them by the Location Counter. It is crucial for resolving forward references.</li><li><strong>LITTAB (Literal Table):</strong> A dynamic table that stores all literals (constants used directly in instructions, e.g., <code>=5</code>). It stores the literal name, its evaluated value, and the memory address assigned to it during the literal pool allocation.</li><li><strong>POOLTAB (Pool Table):</strong> Used in conjunction with LITTAB. In complex programs, literals are dumped into memory in batches (literal pools) when an <code>LTORG</code> directive is encountered. POOLTAB stores the starting index in the LITTAB for each literal pool, allowing the assembler to manage multiple pools efficiently.</li></ul></div>"
     },
     {
+        "id": "q6",
+        "topic": "Macros",
         "freq": 4,
         "marks": "4, 7",
         "text": "List and explain all the tables used in macro preprocessor (MNT, KPDTAB, SSTAB, EVTAB, MDT).",
@@ -165,13 +258,17 @@
         "answer": "<p>A Macro Preprocessor evaluates and expands macros before the code is sent to the assembler. To handle nested macros, parameters, and conditional expansions, it relies on several specialized tables:</p><table class='styled-table'><thead><tr><th>Table Name</th><th>Full Form</th><th>Description / Role</th></tr></thead><tbody><tr><td><strong>MNT</strong></td><td>Macro Name Table</td><td>Stores the name of every defined macro. It acts as an index, containing the number of positional parameters, the number of keyword parameters, and a direct pointer to the starting line of this macro in the MDT.</td></tr><tr><td><strong>MDT</strong></td><td>Macro Definition Table</td><td>Stores the actual body of the macro. When a macro definition is processed, its statements are sequentially stored here. During a macro call, the preprocessor fetches statements from the MDT to expand them.</td></tr><tr><td><strong>KPDTAB</strong></td><td>Keyword Parameter Default Table</td><td>Stores the names of keyword parameters and their default values. If a macro call omits a keyword argument, the preprocessor retrieves the default value from this table.</td></tr><tr><td><strong>EVTAB</strong></td><td>Expansion Time Variable Table</td><td>Maintains variables that are only used during macro expansion (not at runtime). Useful for maintaining counters in macro loops (like <code>&amp;Z SET 1</code>).</td></tr><tr><td><strong>SSTAB</strong></td><td>Sequencing Symbol Table</td><td>Stores labels (sequencing symbols like <code>.LOOP</code>) used inside the macro body. This table is essential for handling conditional jumps (AIF) and unconditional jumps (AGO) during expansion.</td></tr></tbody></table>"
     },
     {
+        "id": "q7",
+        "topic": "Loaders",
         "freq": 4,
         "marks": "3, 4",
         "text": "Differentiate between linker and loader.",
         "baby_explanation": "The Linker is the chef who gathers all the ingredients and mixes them into a single cake. The Loader is the waiter who takes the cake and places it on your table (the RAM) so you can eat (execute) it.",
-        "answer": "<p>While both are essential parts of the program execution pipeline, they serve distinctly different roles in system software.</p><table class='styled-table'><thead><tr><th>Feature</th><th>Linker (Linkage Editor)</th><th>Loader</th></tr></thead><tbody><tr><td><strong>Primary Function</strong></td><td>Takes one or more object files generated by a compiler/assembler and combines them into a single executable file.</td><td>Takes the final executable file from the disk and loads it into the main memory (RAM) for execution.</td></tr><tr><td><strong>Resolution</strong></td><td>Resolves external references (e.g., linking a <code>printf</code> function call to the standard C library).</td><td>Does not resolve external references; it only places data in memory.</td></tr><tr><td><strong>Relocation</strong></td><td>Performs relocation by adjusting absolute addresses if modules are combined.</td><td>May perform final absolute relocation depending on the physical memory address allocated by the OS.</td></tr><tr><td><strong>Input</strong></td><td>Object code (.obj / .o files) and Library files (.lib / .a).</td><td>Executable files (.exe / .out).</td></tr><tr><td><strong>Output</strong></td><td>A single Executable module.</td><td>A running Process in the operating system.</td></tr></tbody></table>"
+        "answer": "<table class='styled-table'><thead><tr><th>Feature</th><th>Linker (Linkage Editor)</th><th>Loader</th></tr></thead><tbody><tr><td><strong>Primary Function</strong></td><td>Takes one or more object files generated by a compiler/assembler and combines them into a single executable file.</td><td>Takes the final executable file from the disk and loads it into the main memory (RAM) for execution.</td></tr><tr><td><strong>Resolution</strong></td><td>Resolves external references (e.g., linking a <code>printf</code> function call to the standard C library).</td><td>Does not resolve external references; it only places data in memory.</td></tr><tr><td><strong>Relocation</strong></td><td>Performs relocation by adjusting absolute addresses if modules are combined.</td><td>May perform final absolute relocation depending on the physical memory address allocated by the OS.</td></tr><tr><td><strong>Input</strong></td><td>Object code (.obj / .o files) and Library files (.lib / .a).</td><td>Executable files (.exe / .out).</td></tr><tr><td><strong>Output</strong></td><td>A single Executable module.</td><td>A running Process in the operating system.</td></tr></tbody></table>"
     },
     {
+        "id": "q8",
+        "topic": "Macros",
         "freq": 4,
         "marks": "3, 7",
         "text": "Demonstrate the use of AIF and AGO / expansion time statements.",
@@ -179,6 +276,8 @@
         "answer": "<p>AIF and AGO are expansion-time control statements used in macro programming. They control the flow of how a macro expands, allowing for conditional logic and loops during the pre-processing phase.</p><div class='rich-content'><ul><li><strong>AIF (Conditional Jump):</strong> Evaluates a boolean expression. If the expression is true, the macro processor jumps to a specified sequencing symbol. If false, it continues to the next line. <br><em>Syntax:</em> <code>AIF (Condition) .TargetSymbol</code></li><li><strong>AGO (Unconditional Jump):</strong> Forces the macro processor to immediately skip to a specified sequencing symbol, ignoring all lines in between. <br><em>Syntax:</em> <code>AGO .TargetSymbol</code></li></ul><h4>Academic Example (Macro Loop):</h4><p>This macro generates multiple <code>ADD</code> instructions based on the parameter passed to it.</p><div class='code-block'>MACRO<br>MULTIPLY_BY_ADD &amp;REG, &amp;VAL, &amp;COUNT<br>&amp;I SET 1                ; Initialize expansion variable<br>.LOOP AIF (&amp;I GT &amp;COUNT) .END  ; If I > COUNT, jump to END<br>      ADD &amp;REG, &amp;VAL    ; Generate ADD instruction<br>&amp;I SET &amp;I + 1           ; Increment I<br>      AGO .LOOP         ; Loop back<br>.END MEND</div><p>If called with <code>MULTIPLY_BY_ADD AREG, X, 3</code>, it will output three consecutive <code>ADD AREG, X</code> instructions.</p></div>"
     },
     {
+        "id": "q9",
+        "topic": "Loaders",
         "freq": 4,
         "marks": "4, 7",
         "text": "Explain self-relocating program.",
@@ -186,6 +285,8 @@
         "answer": "<p>In standard execution, a relocating loader adjusts absolute memory addresses within a program before execution. However, a <strong>Self-Relocating Program</strong> contains its own logic to perform these address adjustments at runtime.</p><div class='rich-content'><h4>Mechanism:</h4><ol><li>The program is loaded into memory by a simple Absolute Loader (which doesn't know how to relocate).</li><li>The first piece of code to execute is the program's built-in <strong>Relocation Logic</strong>.</li><li>The program queries the CPU/OS to find its actual physical starting address in RAM.</li><li>It compares this actual address with the origin address it was compiled for, calculating the <strong>Relocation Factor</strong>.</li><li>It then iterates through a self-contained relocation table, updating all of its own address-dependent instructions in memory by adding the relocation factor.</li><li>Once self-modification is complete, it jumps to the main program execution.</li></ol><h4>Use Cases:</h4><p>Self-relocating programs are highly useful in environments where complex loaders aren't available, such as embedded systems, bootloaders, firmware, or when writing highly portable malicious payloads/viruses.</p></div>"
     },
     {
+        "id": "q10",
+        "topic": "Compilers",
         "freq": 4,
         "marks": "7",
         "text": "List various phases of Language Processor / Compiler. Explain each phase in detail.",
@@ -193,6 +294,8 @@
         "answer": "<p>A compiler translates high-level language into machine code through a strict, multi-phase pipeline divided into Analysis (front-end) and Synthesis (back-end).</p><div class='diagram-placeholder'>Source Code &rarr; [Lexical] &rarr; [Syntax] &rarr; [Semantic] &rarr; [Intermediate Code] &rarr; [Optimization] &rarr; [Target Code] &rarr; Machine Code</div><div class='rich-content'><ol><li><strong>Lexical Analysis (Scanner):</strong> Reads the raw source code character by character and groups them into meaningful units called <em>Tokens</em> (e.g., keywords, identifiers, operators). It also removes whitespace and comments.</li><li><strong>Syntax Analysis (Parser):</strong> Takes the stream of tokens and checks them against the grammatical rules of the language. It constructs a <em>Parse Tree</em> to ensure the expressions are structurally valid.</li><li><strong>Semantic Analysis:</strong> Verifies the logical meaning of the parse tree. It checks for type compatibility (e.g., you can't multiply a string by a float), scope resolution, and variable initialization.</li><li><strong>Intermediate Code Generation (IR):</strong> Translates the semantic tree into a platform-independent intermediate language (like Three-Address Code). This bridges the gap between high-level logic and low-level execution.</li><li><strong>Code Optimization:</strong> Analyzes the IR to improve performance. It removes redundant calculations (dead code elimination, constant folding) to make the code run faster and use less memory.</li><li><strong>Target Code Generation:</strong> The final phase. It maps the optimized IR to the specific assembly or machine language instructions of the target CPU architecture, assigning registers and physical memory addresses.</li></ol></div>"
     },
     {
+        "id": "q11",
+        "topic": "Assemblers",
         "freq": 3,
         "marks": "7",
         "text": "Compare variant I and variant II of intermediate code representation.",
@@ -200,6 +303,8 @@
         "answer": "<p>During Pass I of a two-pass assembler, Intermediate Code (IC) is generated. This IC can be structured in two different ways depending on how much memory vs processing power you want to use.</p><table class='styled-table'><thead><tr><th>Feature</th><th>Variant I (Declarative)</th><th>Variant II (Imperative)</th></tr></thead><tbody><tr><td><strong>Operand Representation</strong></td><td>Operands are represented as a pair: <code>(Class, Code)</code>. For example, a symbol might be represented as <code>(S, 01)</code> meaning 'Symbol table entry 1'.</td><td>Operands are represented by their actual evaluated memory addresses calculated during Pass I.</td></tr><tr><td><strong>Pass II Workload</strong></td><td><strong>High.</strong> Pass II must constantly read the <code>(S, 01)</code> tag, open the SYMTAB, find entry 1, and fetch the address.</td><td><strong>Low.</strong> Pass II doesn't need to look up symbols; it just replaces mnemonics with binary and outputs the final code.</td></tr><tr><td><strong>Memory/Storage Requirement</strong></td><td><strong>Low.</strong> The IC file is very small because <code>(S, 01)</code> takes up less space than a full 32-bit memory address.</td><td><strong>High.</strong> The IC file is larger because full memory addresses are written directly into the intermediate file.</td></tr><tr><td><strong>Usage</strong></td><td>Used when disk I/O and memory are limited (older systems).</td><td>Used in modern systems where memory is cheap and speed is prioritized.</td></tr></tbody></table>"
     },
     {
+        "id": "q12",
+        "topic": "Macros",
         "freq": 3,
         "marks": "3, 7",
         "text": "Compare and contrast the properties of macros and subroutines.",
@@ -207,6 +312,8 @@
         "answer": "<table class='styled-table'><thead><tr><th>Property</th><th>Macro</th><th>Subroutine (Function)</th></tr></thead><tbody><tr><td><strong>Processing Time</strong></td><td>Processed during <strong>Expansion Time</strong> (Pre-processing/Assembly) before the code is even compiled.</td><td>Processed during <strong>Execution Time</strong> (Runtime) by the CPU.</td></tr><tr><td><strong>Code Space (Memory)</strong></td><td><strong>Increases code size.</strong> The macro body is physically copy-pasted into the source code every time it is called.</td><td><strong>Saves space.</strong> The code exists only once in memory, regardless of how many times it is called.</td></tr><tr><td><strong>Execution Speed</strong></td><td><strong>Faster.</strong> Since the code is inline, there is no overhead for context switching.</td><td><strong>Slower.</strong> Involves overhead: pushing parameters to the stack, jumping to the function, and returning.</td></tr><tr><td><strong>Parameter Passing</strong></td><td>Parameters are replaced purely via textual substitution before execution.</td><td>Parameters are passed via registers or the stack at runtime.</td></tr><tr><td><strong>Flexibility</strong></td><td>Can alter syntax, define variables, and generate conditional code structures at compile time.</td><td>Fixed logic structure; only the data passed to it changes at runtime.</td></tr></tbody></table>"
     },
     {
+        "id": "q13",
+        "topic": "Loaders",
         "freq": 3,
         "marks": "4, 7",
         "text": "What is program relocation? How it is performed by linker?",
@@ -214,6 +321,8 @@
         "answer": "<p><strong>Program Relocation</strong> is the process of modifying absolute memory addresses within object code so that a program can execute correctly when loaded at an arbitrary memory address, different from the origin it was originally assembled for.</p><div class='rich-content'><h4>How the Linker Performs Relocation:</h4><ol><li><strong>Determine Load Address:</strong> The OS or user specifies the actual physical address where the program will be loaded into RAM (e.g., 5000).</li><li><strong>Calculate Relocation Factor:</strong> The linker looks at the original Translated Origin (e.g., 1000) assigned by the assembler. It calculates the difference:<br><code>Relocation Factor = Final Load Address - Translated Origin (e.g., 5000 - 1000 = 4000)</code>.</li><li><strong>Scan Relocation Dictionary:</strong> The assembler leaves behind a 'Relocation Dictionary' indicating exactly which instructions use absolute memory addresses.</li><li><strong>Update Addresses:</strong> The linker iterates through the dictionary. For every flagged instruction, it adds the Relocation Factor to the address portion. If an instruction pointed to 1050, it now points to 5050.</li><li><strong>Finalize:</strong> The fully relocated executable is written to disk, ready to be loaded directly into address 5000.</li></ol></div>"
     },
     {
+        "id": "q14",
+        "topic": "Loaders",
         "freq": 3,
         "marks": "3, 4",
         "text": "Explain compile-and-go loaders in brief.",
@@ -221,6 +330,8 @@
         "answer": "<p>A <strong>Compile-and-Go loader</strong> is a system software model where the compiler, assembler, and loader are integrated into a single monolithic program. Instead of generating a permanent object file (.obj/.exe) on the hard drive, the compiler translates the source code and places the resulting machine code directly into main memory.</p><div class='rich-content'><h4>Key Characteristics:</h4><ul><li><strong>Immediate Execution:</strong> Once compilation finishes, the CPU's instruction pointer is immediately set to the starting address of the generated code in RAM.</li><li><strong>Advantages:</strong> It is incredibly fast from a user perspective since it eliminates disk I/O (no writing object files, no reading them back). It is excellent for educational environments, small scripts, or basic interpreters.</li><li><strong>Disadvantages:</strong> <ul><li>No linking is possible. You cannot compile one file today, another tomorrow, and link them together.</li><li>Memory Waste: The compiler must remain in memory alongside the executing program, taking up valuable RAM.</li><li>If the program needs to run again tomorrow, it must be completely recompiled from scratch.</li></ul></li></ul></div>"
     },
     {
+        "id": "q15",
+        "topic": "Loaders",
         "freq": 3,
         "marks": "7",
         "text": "What is overlay? Explain the linking of overlay structured program.",
@@ -228,6 +339,8 @@
         "answer": "<p><strong>Overlay</strong> is an advanced memory management technique used when a program's size exceeds the total available physical memory. It divides the program into independent modules (overlays) that do not need to reside in memory simultaneously.</p><div class='rich-content'><h4>Linking of Overlay Structured Programs:</h4><ul><li><strong>Structure Definition:</strong> The programmer provides an overlay tree to the linker, specifying which modules are mutually exclusive (e.g., Pass 1 and Pass 2 of a compiler never run at the same time).</li><li><strong>Root Module:</strong> The linker identifies a 'Root' module containing the main program logic and the <strong>Overlay Manager</strong>. The Root remains in memory permanently.</li><li><strong>Address Assignment:</strong> The linker assigns the <em>exact same load address</em> to mutually exclusive modules. For example, both Module A and Module B are linked to start at address 2000.</li><li><strong>Execution Flow:</strong> During runtime, if the Root needs Module A, the Overlay Manager loads it from disk to address 2000. Later, if Module B is needed, the Overlay Manager fetches B and overwrites Module A at address 2000.</li><li>This allows massive programs to execute in severely constrained memory environments, at the cost of slow disk I/O when swapping overlays.</li></ul></div>"
     },
     {
+        "id": "q16",
+        "topic": "Compilers",
         "freq": 3,
         "marks": "7",
         "text": "What is Symbol table? Explain how one can organize Symbol table using Linear Data Structure?",
@@ -235,6 +348,8 @@
         "answer": "<p>A <strong>Symbol Table</strong> is a vital data structure used by compilers and assemblers to keep track of semantics, identifiers (like variable and function names), mapping them to their memory locations, data types, and scope.</p><div class='rich-content'><h4>Linear Data Structure Organization:</h4><p>The simplest way to implement a symbol table is using a linear array or a linked list.</p><ul><li><strong>Insertion (Adding a symbol):</strong> When a new variable is encountered, the compiler must first scan the entire list to ensure the variable hasn't already been declared (preventing duplicates). If it's a new variable, it is appended to the end of the array/list. Because of the search requirement, insertion takes <strong>O(N)</strong> time.</li><li><strong>Lookup (Searching a symbol):</strong> When a variable is used in an equation, the compiler searches the array linearly from start to finish to find its address. Lookup takes <strong>O(N)</strong> time.</li><li><strong>Advantages:</strong> Extremely simple to code and implement. Requires minimal memory overhead (no pointers needed if using an array).</li><li><strong>Disadvantages:</strong> Highly inefficient for large programs. As the number of variables (N) grows, compilation time increases exponentially due to the constant linear searching. It is only suitable for toy compilers or incredibly short scripts.</li></ul></div>"
     },
     {
+        "id": "q17",
+        "topic": "Macros",
         "freq": 3,
         "marks": "4",
         "text": "Show the difference between positional parameter and keyword parameter in macro.",
@@ -242,6 +357,8 @@
         "answer": "<table class='styled-table'><thead><tr><th>Feature</th><th>Positional Parameters</th><th>Keyword Parameters</th></tr></thead><tbody><tr><td><strong>Definition Syntax</strong></td><td><code>MACRO ADD &amp;A, &amp;B</code></td><td><code>MACRO ADD &amp;A=0, &amp;B=0</code></td></tr><tr><td><strong>Matching Rule</strong></td><td>Arguments provided in the macro call are matched to parameters strictly based on their physical left-to-right order.</td><td>Arguments are matched by explicitly specifying the parameter's name, overriding the order.</td></tr><tr><td><strong>Calling Syntax</strong></td><td><code>ADD X, Y</code> (X becomes &amp;A, Y becomes &amp;B)</td><td><code>ADD &amp;B=Y, &amp;A=X</code> (Order doesn't matter)</td></tr><tr><td><strong>Default Values</strong></td><td>Cannot have default values. Every parameter must be passed in the call.</td><td>Can have default values. If an argument is omitted during the call, the preprocessor uses the default.</td></tr><tr><td><strong>Best Used For</strong></td><td>Macros with very few, mandatory arguments.</td><td>Complex macros with many optional parameters.</td></tr></tbody></table>"
     },
     {
+        "id": "q18",
+        "topic": "Grammar",
         "freq": 2,
         "marks": "7",
         "text": "Explain recursive descendent parsing algorithm.",
@@ -249,6 +366,8 @@
         "answer": "<p><strong>Recursive Descent Parsing</strong> is a top-down parsing technique built from a set of mutually recursive functions. Each non-terminal in the grammar is implemented as a distinct function.</p><div class='rich-content'><h4>Algorithm Flow:</h4><ol><li>The parser begins by calling the function corresponding to the start symbol of the grammar.</li><li>Inside a function for non-terminal <code>A</code>, the algorithm looks at the right-hand side (RHS) of <code>A</code>'s production rule.</li><li>If the RHS contains a <strong>terminal</strong> (a token like '+', 'id'), the parser checks if the current input token matches it. If it does, it consumes the token and advances. If not, it throws a syntax error (or backtracks).</li><li>If the RHS contains a <strong>non-terminal</strong> <code>B</code>, the parser recursively calls the function <code>B()</code>.</li><li>If a non-terminal has multiple production rules (e.g., <code>A &rarr; &alpha; | &beta;</code>), a predictive recursive descent parser uses the FIRST set of the lookahead token to decide which path to take. If the grammar isn't LL(1), the parser must <strong>backtrack</strong>, trying &alpha;, and if it fails, undoing the state and trying &beta;.</li></ol></div>"
     },
     {
+        "id": "q19",
+        "topic": "Compilers",
         "freq": 2,
         "marks": "7",
         "text": "What is optimizing transformation? Discuss various optimizing transformations.",
@@ -256,6 +375,8 @@
         "answer": "<p><strong>Optimizing Transformations</strong> are semantic-preserving operations applied to intermediate code by a compiler. The goal is to produce a final target code that executes faster or consumes less memory.</p><div class='rich-content'><h4>Key Transformations:</h4><ul><li><strong>Compile Time Evaluation (Constant Folding):</strong> The compiler calculates math involving constants before the program runs. <br><em>Before:</em> <code>x = 2 * 3.14;</code> <br><em>After:</em> <code>x = 6.28;</code></li><li><strong>Dead Code Elimination:</strong> Removing code that can never be reached or variables that are calculated but never used. <br><em>Example:</em> <code>if (false) { print('hello'); }</code> is entirely deleted.</li><li><strong>Common Sub-expression Elimination:</strong> Identifying repeated calculations and storing the result to avoid doing the math twice. <br><em>Before:</em> <code>x = a * b + c; y = a * b - d;</code><br><em>After:</em> <code>temp = a * b; x = temp + c; y = temp - d;</code></li><li><strong>Code Motion (Loop Invariant Optimization):</strong> Moving computations outside of a loop if their results do not change during iterations, drastically saving CPU cycles.</li><li><strong>Strength Reduction:</strong> Replacing expensive operations with cheaper ones (e.g., replacing <code>x = y * 2</code> with a bitwise left shift <code>x = y << 1</code>).</li></ul></div>"
     },
     {
+        "id": "q20",
+        "topic": "General",
         "freq": 2,
         "marks": "3, 4",
         "text": "Explain the user-centric view and system-centric view of system software.",
@@ -263,6 +384,8 @@
         "answer": "<div class='rich-content'><p>System software (like Operating Systems) can be analyzed from two distinct perspectives:</p><ul><li><strong>User-Centric View:</strong> This perspective evaluates the software based on how it interacts with the end-user or application programmer. The focus is on ease of use, providing a clean abstraction over complex hardware. It involves high-level APIs, Graphical User Interfaces (GUIs), file systems, and seamless execution environments. From this view, the OS is a master interface that makes the hardware convenient to use.</li><li><strong>System-Centric View:</strong> This perspective looks at the software from the hardware's point of view. Here, the OS is a <strong>Resource Allocator</strong> and a <strong>Control Program</strong>. It focuses on efficiency, fairness, and security. It manages CPU scheduling, allocates RAM, prevents deadlocks, handles hardware interrupts, and ensures that multiple processes don't interfere with each other.</li></ul></div>"
     },
     {
+        "id": "q21",
+        "topic": "Compilers",
         "freq": 2,
         "marks": "3, 4",
         "text": "Differentiate Compiler and Interpreter.",
@@ -270,6 +393,8 @@
         "answer": "<table class='styled-table'><thead><tr><th>Feature</th><th>Compiler</th><th>Interpreter</th></tr></thead><tbody><tr><td><strong>Translation Method</strong></td><td>Scans the entire source code at once and translates it entirely into machine code before execution begins.</td><td>Translates and executes the source code line-by-line, sequentially.</td></tr><tr><td><strong>Output File</strong></td><td>Generates a persistent intermediate object/executable file (.exe).</td><td>Does not generate any persistent executable file.</td></tr><tr><td><strong>Execution Speed</strong></td><td>Execution is very fast because the code is already pre-translated into native hardware instructions.</td><td>Execution is comparatively slow because translation happens simultaneously with execution.</td></tr><tr><td><strong>Error Reporting</strong></td><td>Errors are reported all at once after the entire file is scanned, which can make debugging complex.</td><td>Stops execution immediately at the first syntax error, making it easier for beginners to debug.</td></tr><tr><td><strong>Examples</strong></td><td>C, C++, Rust, Go.</td><td>Python, JavaScript, Ruby, PHP.</td></tr></tbody></table>"
     },
     {
+        "id": "q22",
+        "topic": "General",
         "freq": 2,
         "marks": "3, 4",
         "text": "Define Language Migrator, Execution gap, Semantic Gap, Specification Gap.",
@@ -277,6 +402,8 @@
         "answer": "<div class='rich-content'><ul><li><strong>Semantic Gap:</strong> The massive difference in complexity and abstraction between the semantics of a high-level language (like object-oriented classes) and the actual execution semantics of the underlying CPU hardware (registers and logic gates).</li><li><strong>Specification Gap:</strong> The gap between a human's abstract problem definition (the real-world logic) and the precise algorithmic specification required to write a program for it.</li><li><strong>Execution Gap:</strong> The gap between the operations defined in the high-level language program and the actual machine language instructions available on the hardware. Compilers are built to bridge this execution gap.</li><li><strong>Language Migrator:</strong> A specialized piece of system software (a source-to-source compiler or transpiler) designed to translate source code written in one high-level language directly into another high-level language (e.g., converting old COBOL code to Java, or TypeScript to JavaScript).</li></ul></div>"
     },
     {
+        "id": "q23",
+        "topic": "Assemblers",
         "freq": 2,
         "marks": "7",
         "text": "Write and explain an algorithm for first pass of the Linker program / Assembler.",
@@ -284,6 +411,8 @@
         "answer": "<p><strong>Pass 1 of an Assembler (Macro algorithm overview):</strong> The primary goal of Pass 1 is to define symbols and build the Symbol Table (SYMTAB), calculating memory addresses without generating machine code.</p><div class='rich-content'><ol><li>Read the first line. If the opcode is <code>START</code>, read the operand and initialize the <strong>Location Counter (LC)</strong> to this value. Otherwise, set LC to 0.</li><li>Read the next line of source code.</li><li>If the line contains a <strong>Label</strong>, check if it's already in the SYMTAB. If yes, throw a duplicate symbol error. If no, insert the Label and the current LC value into the SYMTAB.</li><li>Check the opcode:<ul><li>If it's an Assembler Directive allocating data (e.g., <code>RESW</code>, <code>RESB</code>), add the corresponding byte size to the LC.</li><li>If it's a Machine Instruction (e.g., <code>ADD</code>, <code>MOV</code>), search the <strong>OPTAB</strong> to find its instruction length, and add that length to the LC.</li></ul></li><li>If a literal is encountered (e.g., <code>=F'5'</code>), add it to the <strong>LITTAB</strong> (if not already present).</li><li>If the opcode is <code>END</code>, halt Pass 1. Assign addresses to any remaining literals in the LITTAB. Pass the intermediate file and tables to Pass 2.</li></ol></div>"
     },
     {
+        "id": "q24",
+        "topic": "General",
         "freq": 1,
         "marks": "3, 4, 7",
         "text": "Various individual concepts (Dead Code, JVM, Bootstrap loader, DFA).",
@@ -291,58 +420,170 @@
         "answer": "<div class='rich-content'><ul><li><strong>Dead Code Elimination:</strong> A compiler optimization technique that removes code which does not affect the program's output (e.g., unreachable code after a return statement, or variables that are assigned but never used). This reduces file size and speeds up execution.</li><li><strong>JVM (Java Virtual Machine):</strong> An abstract computing machine that provides a runtime environment to execute Java Bytecode. It bridges the execution gap, making Java platform-independent. It uses a stack-based architecture rather than registers.</li><li><strong>Bootstrap Loader:</strong> An incredibly small, primitive loader permanently stored in ROM. When the computer is powered on, the hardware automatically executes it. Its sole job is to load the Operating System kernel from the hard drive into RAM and pass control to it.</li><li><strong>DFA (Deterministic Finite Automaton):</strong> A state machine used heavily in the Lexical Analysis phase. It ensures that for every input character, there is exactly one predetermined state to transition to. It is highly efficient for matching regular expressions to generate tokens.</li></ul></div>"
     }
 ];
+        
+        let isFlashcardMode = false;
+        let activeFilter = 'all';
+        let activeTopic = 'all';
+        let searchQuery = '';
 
-        function renderQuestions(data) {
-            const container = document.getElementById('questionsContainer');
-            container.innerHTML = '';
-            
-            data.forEach((q, index) => {
-                const delay = index * 0.05;
-                const freqClass = q.freq >= 5 ? 'high' : '';
-                
-                const card = document.createElement('div');
-                card.className = 'question-card';
-                card.style.animationDelay = `${delay}s`;
-                card.onclick = function() {
-                    this.classList.toggle('active');
-                };
-                
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div class="badges">
-                            <span class="badge freq ${freqClass}">${q.freq} Time${q.freq > 1 ? 's' : ''}</span>
-                            <span class="badge marks">${q.marks} Marks</span>
-                        </div>
-                    </div>
-                    <div class="question-text">${q.text}</div>
-                    <div class="answer-content">
-                        <div class="baby-box">
-                            <div class="baby-icon">💡</div>
-                            <div><strong>Quick Explanation:</strong> ${q.baby_explanation}</div>
-                        </div>
-                        <div class="proper-answer">
-                            ${q.answer}
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
+        // Initialize Local Storage
+        let userProgress = JSON.parse(localStorage.getItem('gtu_progress_v2')) || { starred: [], learned: [] };
+
+        function saveProgress() {
+            localStorage.setItem('gtu_progress_v2', JSON.stringify(userProgress));
+            updateProgressBar();
+        }
+
+        function toggleStar(id, event) {
+            event.stopPropagation();
+            if (userProgress.starred.includes(id)) {
+                userProgress.starred = userProgress.starred.filter(x => x !== id);
+            } else {
+                userProgress.starred.push(id);
+            }
+            saveProgress();
+            renderApp();
+        }
+
+        function toggleLearned(id, event) {
+            event.stopPropagation();
+            if (userProgress.learned.includes(id)) {
+                userProgress.learned = userProgress.learned.filter(x => x !== id);
+            } else {
+                userProgress.learned.push(id);
+            }
+            saveProgress();
+            if (activeFilter === 'unlearned') renderApp();
+        }
+
+        function toggleFlashcardMode() {
+            isFlashcardMode = !isFlashcardMode;
+            document.getElementById('flashcardToggle').classList.toggle('active-mode');
+            renderApp();
+        }
+
+        function enablePrintMode() {
+            document.body.classList.add('print-mode');
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('print-mode');
+            }, 500);
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            renderApp();
+        }
+
+        function filterByTopic(topic) {
+            activeTopic = topic;
+            document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-topic="${topic}"]`).classList.add('active');
+            renderApp();
+        }
+
+        function filterByState(state) {
+            activeFilter = state;
+            document.getElementById('btn-freq-all').classList.remove('active');
+            document.getElementById('btn-freq-high').classList.remove('active');
+            document.getElementById('btn-starred').classList.remove('active');
+            document.getElementById('btn-unlearned').classList.remove('active');
+            document.getElementById(`btn-${state === 'high' ? 'freq-high' : state === 'all' ? 'freq-all' : state}`).classList.add('active');
+            renderApp();
+        }
+
+        function updateProgressBar() {
+            const total = questionsData.length;
+            const completed = userProgress.learned.length;
+            const percentage = (completed / total) * 100;
+            document.getElementById('progressText').innerText = `${completed} / ${total} Learned`;
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+        }
+
+        // Initialize Topic Buttons
+        function setupTopics() {
+            const topics = [...new Set(questionsData.map(q => q.topic))];
+            const container = document.getElementById('topicFilters');
+            topics.forEach(topic => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn topic-btn';
+                btn.setAttribute('data-topic', topic);
+                btn.innerText = topic;
+                btn.onclick = () => filterByTopic(topic);
+                container.appendChild(btn);
             });
         }
 
-        function filterQuestions(minFreq) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        function renderApp() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
             
-            if (minFreq === 0) {
-                renderQuestions(questionsData);
-            } else if(minFreq === 4) {
-                renderQuestions(questionsData.filter(q => q.freq >= 4));
-            } else {
-                renderQuestions(questionsData.filter(q => q.freq === minFreq));
-            }
+            // Filter Data
+            let filtered = questionsData.filter(q => {
+                // Topic filter
+                if (activeTopic !== 'all' && q.topic !== activeTopic) return false;
+                
+                // State filter
+                if (activeFilter === 'high' && q.freq < 3) return false;
+                if (activeFilter === 'starred' && !userProgress.starred.includes(q.id)) return false;
+                if (activeFilter === 'unlearned' && userProgress.learned.includes(q.id)) return false;
+
+                // Search filter
+                if (searchQuery) {
+                    const match = q.text.toLowerCase().includes(searchQuery) || 
+                                  q.answer.toLowerCase().includes(searchQuery) ||
+                                  q.baby_explanation.toLowerCase().includes(searchQuery);
+                    if (!match) return false;
+                }
+                return true;
+            });
+
+            filtered.forEach(q => {
+                const isStarred = userProgress.starred.includes(q.id);
+                const isLearned = userProgress.learned.includes(q.id);
+                
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                
+                let answerHtml = '';
+                if (isFlashcardMode) {
+                    answerHtml = `<button class="reveal-btn" style="display:block;" onclick="this.nextElementSibling.classList.add('show'); this.style.display='none';">Reveal Answer</button>
+                                  <div class="answer-content">
+                                    <div class="baby-box"><div class="baby-icon">💡</div><div><strong>Quick Explanation:</strong> ${q.baby_explanation}</div></div>
+                                    <div class="proper-answer">${q.answer}</div>
+                                  </div>`;
+                } else {
+                    answerHtml = `<div class="answer-content show">
+                                    <div class="baby-box"><div class="baby-icon">💡</div><div><strong>Quick Explanation:</strong> ${q.baby_explanation}</div></div>
+                                    <div class="proper-answer">${q.answer}</div>
+                                  </div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="card-actions">
+                        <label class="checkbox-container">
+                            <input type="checkbox" ${isLearned ? 'checked' : ''} onchange="toggleLearned('${q.id}', event)"> Learned
+                        </label>
+                        <div class="star-btn ${isStarred ? 'starred' : ''}" onclick="toggleStar('${q.id}', event)">${isStarred ? '★' : '☆'}</div>
+                    </div>
+                    <div class="card-header" onclick="if(!isFlashcardMode) this.parentElement.querySelector('.answer-content').classList.toggle('show')">
+                        <div class="badges">
+                            <span class="badge topic">${q.topic}</span>
+                            <span class="badge freq">${q.freq} Time${q.freq > 1 ? 's' : ''}</span>
+                            <span class="badge marks">${q.marks} Marks</span>
+                        </div>
+                    </div>
+                    <div class="question-text" onclick="if(!isFlashcardMode) this.parentElement.querySelector('.answer-content').classList.toggle('show')">${q.text}</div>
+                    ${answerHtml}
+                `;
+                container.appendChild(card);
+            });
+            updateProgressBar();
         }
 
-        renderQuestions(questionsData);
+        // Boot the app
+        setupTopics();
+        renderApp();
     </script>
 </body>
 </html>
