@@ -57,17 +57,14 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             border: 1px solid var(--border);
         }
-        select, input {
+        input {
             border: none;
             background: transparent;
             font-size: 1rem;
             color: var(--text-main);
             outline: none;
             padding: 12px 20px;
-        }
-        input {
-            border-right: 1px solid var(--border);
-            width: 300px;
+            width: 100%;
         }
         
         .grid {
@@ -125,7 +122,7 @@
         
         @media (max-width: 600px) {
             .controls { flex-direction: column; border-radius: 16px; padding: 16px; }
-            input { border-right: none; border-bottom: 1px solid var(--border); width: 100%; }
+            input { width: 100%; }
             .card { padding: 24px; }
             h1 { font-size: 2.2rem; }
         }
@@ -139,13 +136,7 @@
 
     <div class="controls">
         <input type="text" id="searchInput" placeholder="Search questions..." oninput="render()">
-        <select id="freqFilter" onchange="render()">
-            <option value="1">Show All Questions</option>
-            <option value="2">2+ Repetitions</option>
-            <option value="3">3+ Repetitions</option>
-            <option value="4">4+ Repetitions</option>
-            <option value="5">5+ Repetitions</option>
-        </select>
+
     </div>
 
     <div class="grid" id="grid"></div>
@@ -155,13 +146,11 @@
 
         function render() {
             const grid = document.getElementById('grid');
-            const minFreq = parseInt(document.getElementById('freqFilter').value);
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             
             grid.innerHTML = '';
             
             allQuestions.forEach(q => {
-                if (q.count < minFreq) return;
                 
                 let matches = true;
                 let text = q.text;
@@ -193,7 +182,6 @@
         }
         
         window.onload = function() {
-            document.getElementById('freqFilter').value = "2";
             render();
         };
     </script>
